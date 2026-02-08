@@ -1,5 +1,4 @@
-import { Route, Routes } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Route, Routes, NavLink } from "react-router-dom";
 import "./App.scss";
 import { HomePage } from "./pages/homePage/HomePage";
 import { ContactsPage } from "./pages/contactsPage/ContactsPage";

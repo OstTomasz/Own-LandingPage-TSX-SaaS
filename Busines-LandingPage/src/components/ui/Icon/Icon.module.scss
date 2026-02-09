@@ -1,0 +1,11 @@
+.icon {
+  display: inline-block;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  transition: fill 0.2s ease;
+
+  &:hover {
+    fill: $highlight-color;
+  }
+}

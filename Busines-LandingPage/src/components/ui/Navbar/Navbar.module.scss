@@ -1,0 +1,39 @@
+.burger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $main-text-color;
+
+  @include mq("tablet") {
+    display: none;
+  }
+}
+
+.navigation {
+  display: none;
+  list-style: none;
+
+  @include mq("tablet") {
+    @include flex-center;
+    gap: 60px;
+    margin: 0;
+    padding: 0;
+  }
+
+  @include mq("desktop") {
+  }
+}
+
+.navlink {
+  @include animated-underline();
+  @include fluid-type(1rem, 1.2rem);
+
+  &.activeLink {
+    color: $highlight-color;
+    transform: scale(1.1);
+    display: inline-block;
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}

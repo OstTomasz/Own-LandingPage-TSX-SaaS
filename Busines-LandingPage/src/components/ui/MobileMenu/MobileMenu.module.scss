@@ -1,0 +1,61 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $backgroundalt-color;
+  z-index: 1000;
+  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(100%);
+
+  will-change: transform, opacity, visibility;
+
+  transition:
+    transform 350ms $transition-timing-function,
+    opacity 350ms $transition-timing-function,
+    visibility 350ms $transition-timing-function;
+
+  &.isOpen {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+}
+
+.closeBtn {
+  display: flex;
+  align-self: flex-end;
+  border: 1px solid $alternative-borderline-color;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  background-color: $background-light-color;
+}
+
+.mobileNav {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .navlink {
+    font-size: 36px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #2e2f42;
+    transition: color 250ms $transition-timing-function;
+
+    &.activeLink {
+      color: $highlight-color;
+    }
+  }
+}

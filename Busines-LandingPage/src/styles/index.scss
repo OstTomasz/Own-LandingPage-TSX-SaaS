@@ -1,11 +1,18 @@
 :root {
   font-family: "Raleway", "Roboto", sans-serif;
 
-  color: $overlay-highlight;
-  background-color: #cdcdcd;
+  color: $main-text-color;
+  background-color: $backgroundalt-color;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
 }

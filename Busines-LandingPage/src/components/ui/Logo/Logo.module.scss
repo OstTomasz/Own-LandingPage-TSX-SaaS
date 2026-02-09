@@ -1,0 +1,11 @@
+.logo {
+  @include animated-underline();
+  @include fluid-type(1.5rem, 2rem);
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.web {
+  color: $overlay-highlight;
+}

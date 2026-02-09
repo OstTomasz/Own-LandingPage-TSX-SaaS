@@ -1,0 +1,19 @@
+.contacts {
+  display: none;
+  font-style: normal;
+  font-family: "Roboto", sans-serif;
+  @include mq("tablet") {
+    @include flex-center(column);
+    gap: 10px;
+  }
+  @include mq("desktop") {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
+
+.link {
+  @include animated-underline();
+  @include fluid-type(0.9rem, 1.1rem);
+  color: $alternative-color;
+}

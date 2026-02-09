@@ -1,3 +1,7 @@
+@use "sass:map";
+@use "sass:math";
+@use "variables" as v;
+
 $breakpoints: (
   "mobile": 480px,
   "tablet": 768px,
@@ -5,10 +9,9 @@ $breakpoints: (
   "large": 1440px,
 );
 
-// Mixin do obsługi Media Queries
 @mixin mq($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media screen and (min-width: map.get($breakpoints, $breakpoint)) {
       @content;
     }
   }
@@ -21,29 +24,13 @@ $breakpoints: (
   flex-direction: $direction;
 }
 
-// .container {
-//   width: 100%;
-//   padding: 20px;
-//   @include flex-center; // Szybkie centrowanie
-
-//   // Responsywność
-//   @include mq("tablet") {
-//     width: 750px;
-//     padding: 40px;
-//   }
-
-//   @include mq("desktop") {
-//     width: 1000px;
-//   }
-// }
-
 @mixin fluid-type(
   $min-size,
   $max-size,
   $min-breakpoint: 480px,
-  $max-breakpoint: 1024px
+  $max-breakpoint: 1440px
 ) {
-  $slope: Math-div(
+  $slope: math.div(
     ($max-size - $min-size),
     ($max-breakpoint - $min-breakpoint)
   );
@@ -55,18 +42,6 @@ $breakpoints: (
     #{$max-size}
   );
 }
-
-@function Math-div($a, $b) {
-  @return $a / $b;
-}
-
-//h1 {
-// Tekst będzie miał 32px na telefonie, 64px na desktopie,
-// a pomiędzy nimi będzie płynnie rósł.
-//@include fluid-type(32px, 64px);
-//font-weight: 700;
-//line-height: 1.2;
-//}
 
 @mixin absolute($top: null, $right: null, $bottom: null, $left: null) {
   position: absolute;
@@ -86,7 +61,6 @@ $breakpoints: (
   aspect-ratio: $width / $height;
 
   @supports not (aspect-ratio: 1 / 1) {
-    // Fallback dla bardzo starych przeglądarek
     position: relative;
     &::before {
       content: "";
@@ -100,3 +74,40 @@ $breakpoints: (
 // .video-container {
 //   @include aspect-ratio(16, 9);
 // }
+
+@mixin animated-underline() {
+  display: inline-block;
+  text-decoration: none;
+  color: currentColor;
+  will-change: transform; //prevent "jump" at the end of transition
+
+  transition:
+    color 250ms v.$transition-timing-function 50ms,
+    transform 250ms v.$transition-timing-function 50ms;
+
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: v.$highlight-color;
+
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 250ms v.$transition-timing-function 50ms;
+  }
+
+  &:hover {
+    color: v.$highlight-color;
+    transform: scale(1.05);
+
+    &::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+}

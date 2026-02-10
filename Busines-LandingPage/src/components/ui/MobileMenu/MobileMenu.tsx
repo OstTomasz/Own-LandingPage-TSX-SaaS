@@ -26,6 +26,8 @@ export const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
         clearTimeout(timer);
         document.body.style.overflow = "";
       };
+    } else {
+      document.body.style.overflow = "";
     }
   }, [isOpen]);
 

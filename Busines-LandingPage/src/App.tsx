@@ -11,7 +11,7 @@ import { Header } from "./components/common/Header/Header";
 
 export const App = () => {
   return (
-    <div>
+    <>
       <Header />
 
       <Routes>
@@ -20,6 +20,6 @@ export const App = () => {
         <Route path="/contacts" element={<ContactsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </div>
+    </>
   );
 };

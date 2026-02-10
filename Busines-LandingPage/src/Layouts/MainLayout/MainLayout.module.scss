@@ -1,0 +1,9 @@
+.mainContainer {
+  @include flex-center(column);
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  margin-top: 12px;
+  padding: 0 16px;
+  text-align: justify;
+}

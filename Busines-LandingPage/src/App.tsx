@@ -7,19 +7,17 @@ import { ContactsPage } from "./pages/contactsPage/ContactsPage";
 import { PortfolioPage } from "./pages/portfolioPage/PortfolioPage";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 
-import { Header } from "./components/common/Header/Header";
+import { MainLayout } from "./Layouts/MainLayout/MainLayout";
 
 export const App = () => {
   return (
-    <>
-      <Header />
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/contacts" element={<ContactsPage />} />
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="portfolio" element={<PortfolioPage />} />
+        <Route path="contacts" element={<ContactsPage />} />
         <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </>
+      </Route>
+    </Routes>
   );
 };

@@ -1,8 +1,12 @@
+import clsx from "clsx";
 import styles from "./Contacts.module.scss";
 
-export const Contacts = () => {
+interface ContactsProps {
+  className?: string; // Opcjonalny prop na dodatkową klasę
+}
+export const Contacts = ({ className }: ContactsProps) => {
   return (
-    <address className={styles.contacts}>
+    <address className={clsx(styles.contacts, className)}>
       <a href="mailto:ost.tomasz@gmail.com" className={styles.link}>
         ost.tomasz@gmail.com
       </a>

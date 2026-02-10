@@ -6,6 +6,8 @@ import styles from "./MobileMenu.module.scss";
 
 import { Icon } from "../Icon/Icon";
 import { NAV_LINKS } from "@/data/navlinks";
+import { Contacts } from "../Contacts/Contacts";
+import { SocialList } from "../SocialList/SocialList";
 
 interface MobileMenuProps {
   onClose: () => void;
@@ -43,19 +45,22 @@ export const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
       <button className={styles.closeBtn} onClick={handleClose} type="button">
         <Icon name="close-btn" size={15} />
       </button>
-
-      <nav className={styles.mobileNav}>
-        {NAV_LINKS.map(({ to, label }) => (
-          <NavLink
-            key={to}
-            to={to}
-            className={getNavLinkClass}
-            onClick={handleClose}
-          >
-            {label}
-          </NavLink>
-        ))}
-      </nav>
+      <div className={styles.overlayContent}>
+        <nav className={styles.mobileNav}>
+          {NAV_LINKS.map(({ to, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={getNavLinkClass}
+              onClick={handleClose}
+            >
+              {label}
+            </NavLink>
+          ))}
+        </nav>
+        <Contacts className={styles.mobileContacts} />
+        <SocialList />
+      </div>
     </div>
   );
 };

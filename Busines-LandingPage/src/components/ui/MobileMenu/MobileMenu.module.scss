@@ -4,15 +4,16 @@
   left: 0;
   background-color: $backgroundalt-color;
   z-index: 1000;
-  padding: 40px 40px;
-  display: flex;
-  flex-direction: column;
   height: 100vh;
   width: 100%;
+  padding-left: 20px;
 
   visibility: hidden;
   opacity: 0;
   transform: translateX(100%);
+
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 
   will-change: transform, opacity, visibility;
 
@@ -28,24 +29,34 @@
     pointer-events: auto;
   }
 }
+.overlayContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+  height: 100%;
+  margin-bottom: 15px;
+}
 
 .closeBtn {
-  display: flex;
-  align-self: flex-end;
+  position: sticky;
+  top: 40px;
+  left: 85%;
   border: 1px solid $alternative-borderline-color;
   border-radius: 50%;
   width: 45px;
   height: 45px;
+  display: flex;
   align-items: center;
   justify-content: center;
   background-color: $background-light-color;
 }
 
 .mobileNav {
-  margin-top: 80px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
+  width: fit-content;
 
   .navlink {
     font-size: 36px;
@@ -58,4 +69,11 @@
       color: $highlight-color;
     }
   }
+}
+
+.mobileContacts {
+  display: flex !important;
+  flex-direction: column;
+  width: fit-content;
+  gap: 16px;
 }

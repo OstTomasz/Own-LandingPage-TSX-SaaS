@@ -18,9 +18,9 @@
   will-change: transform, opacity, visibility;
 
   transition:
-    transform 350ms $transition-timing-function,
-    opacity 350ms $transition-timing-function,
-    visibility 350ms $transition-timing-function;
+    transform $transition-duration $transition-timing-function,
+    opacity $transition-duration $transition-timing-function,
+    visibility $transition-duration $transition-timing-function;
 
   &.isOpen {
     visibility: visible;
@@ -63,7 +63,7 @@
     font-weight: 700;
     text-decoration: none;
     color: #2e2f42;
-    transition: color 250ms $transition-timing-function;
+    transition: color $transition-duration $transition-timing-function;
 
     &.activeLink {
       color: $highlight-color;

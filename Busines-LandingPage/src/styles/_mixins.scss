@@ -82,8 +82,8 @@ $breakpoints: (
   will-change: transform; //prevent "jump" at the end of transition
 
   transition:
-    color 250ms v.$transition-timing-function 50ms,
-    transform 250ms v.$transition-timing-function 50ms;
+    color v.$transition-duration v.$transition-timing-function 50ms,
+    transform v.$transition-duration v.$transition-timing-function 50ms;
 
   position: relative;
 
@@ -98,7 +98,8 @@ $breakpoints: (
 
     transform: scaleX(0);
     transform-origin: bottom right;
-    transition: transform 250ms v.$transition-timing-function 50ms;
+    transition: transform v.$transition-duration v.$transition-timing-function
+      50ms;
   }
 
   &:hover {

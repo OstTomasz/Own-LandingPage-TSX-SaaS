@@ -14,9 +14,9 @@
     will-change: padding;
 
     transition:
-      padding 300ms $transition-timing-function,
-      border-color 300ms $transition-timing-function,
-      box-shadow 300ms $transition-timing-function;
+      padding $transition-duration $transition-timing-function,
+      border-color $transition-duration $transition-timing-function,
+      box-shadow $transition-duration $transition-timing-function;
 
     &.isScrolled {
       padding: 5px 16px;

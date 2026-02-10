@@ -39,6 +39,7 @@
 }
 
 .closeBtn {
+  cursor: pointer;
   position: sticky;
   top: 40px;
   left: 85%;
@@ -56,13 +57,13 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: fit-content;
 
   .navlink {
-    font-size: 36px;
+    @include animated-underline();
+    width: fit-content;
+    font-size: 2.2rem;
     font-weight: 700;
     text-decoration: none;
-    color: #2e2f42;
     transition: color $transition-duration $transition-timing-function;
 
     &.activeLink {
@@ -74,6 +75,5 @@
 .mobileContacts {
   display: flex !important;
   flex-direction: column;
-  width: fit-content;
   gap: 16px;
 }

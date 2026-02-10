@@ -17,6 +17,7 @@
   @include fluid-type(0.9rem, 1.1rem);
   color: $alternative-color;
   font-size: 1.5rem;
+  width: fit-content;
   @include mq("tablet") {
     font-size: 1rem;
   }

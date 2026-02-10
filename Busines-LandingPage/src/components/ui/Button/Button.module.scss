@@ -2,16 +2,17 @@
   @include flex-center();
   gap: 10px;
   font-family: inherit;
-  font-weight: 500;
+  font-weight: 700;
   padding: 16px 32px;
   border-radius: 4px;
   border: none;
+  outline: none;
   cursor: pointer;
+  text-decoration: none;
   transition:
     background-color $transition-duration $transition-timing-function,
     color $transition-duration $transition-timing-function,
     box-shadow $transition-duration $transition-timing-function;
-  text-decoration: none;
 }
 
 .primary {

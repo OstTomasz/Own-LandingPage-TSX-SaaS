@@ -1,15 +1,18 @@
+import { useState } from "react";
 import styles from "./HomeHero.module.scss";
 
-// Importujemy obrazy (zakładając konfigurację Vite/Webpack)
 import mobile1x from "@/assets/images/headline-background-mini.jpg";
 import mobile2x from "@/assets/images/headline-background-mini@2x.jpg";
 import tablet1x from "@/assets/images/headline-background-mid.jpg";
 import tablet2x from "@/assets/images/headline-background-mid@2x.jpg";
 import desktop1x from "@/assets/images/headline-background-max.jpg";
 import desktop2x from "@/assets/images/headline-background-max@2x.jpg";
+
 import { Button } from "../Button/Button";
+import { FormModal } from "../FormModal/FormModal";
 
 export const HomeHero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <section className={styles.hero}>
       <div className={styles.innerWrapper}>
@@ -37,10 +40,14 @@ export const HomeHero = () => {
             <h1 className={styles.title}>
               Effective Solutions for Your Business
             </h1>
-            <Button>Order Service</Button>
+            <Button onClick={() => setIsModalOpen(true)}>Order Service</Button>
           </div>
         </div>
       </div>
+      <FormModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      ></FormModal>
     </section>
   );
 };

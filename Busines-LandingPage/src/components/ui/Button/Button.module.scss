@@ -1,0 +1,26 @@
+.button {
+  @include flex-center();
+  gap: 10px;
+  font-family: inherit;
+  font-weight: 500;
+  padding: 16px 32px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color $transition-duration $transition-timing-function,
+    color $transition-duration $transition-timing-function,
+    box-shadow $transition-duration $transition-timing-function;
+  text-decoration: none;
+}
+
+.primary {
+  background-color: $highlight-color;
+  color: $light-color;
+
+  &:hover,
+  &:focus {
+    background-color: $overlay-highlight;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  }
+}

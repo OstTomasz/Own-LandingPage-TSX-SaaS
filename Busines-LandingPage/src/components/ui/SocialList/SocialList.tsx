@@ -5,7 +5,11 @@ const SOCIAL_DATA = [
   { id: "instagram", href: "https://instagram.com", label: "Instagram" },
   { id: "twitter", href: "https://twitter.com", label: "Twitter" },
   { id: "facebook", href: "https://facebook.com", label: "Facebook" },
-  { id: "linkedin", href: "https://linkedin.com", label: "LinkedIn" },
+  {
+    id: "linkedin",
+    href: "https://linkedin.com/in/tomasz-ostaszewski-7166071aa",
+    label: "LinkedIn",
+  },
 ];
 
 export const SocialList = () => {

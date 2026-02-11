@@ -1,0 +1,34 @@
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 16px;
+  height: 100%;
+}
+
+.iconWrapper {
+  @include flex-center();
+  width: clamp(270px, 80%, 80%);
+  height: 120px;
+  background-color: $backgroundalt-color;
+  border-radius: 4px;
+  margin-bottom: 28px;
+}
+
+.featureTitle {
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: $alternative-color;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+.featureText {
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: $alternative-color;
+  max-width: 264px;
+}

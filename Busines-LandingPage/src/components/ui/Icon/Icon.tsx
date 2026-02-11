@@ -1,3 +1,4 @@
+// src/components/ui/Icon/Icon.tsx
 import styles from "./Icon.module.scss";
 
 interface IconProps {
@@ -12,8 +13,10 @@ export const Icon = ({ name, className, size = 24 }: IconProps) => {
       className={`${styles.icon} ${className || ""}`}
       width={size}
       height={size}
+      viewBox="0 0 32 32"
+      aria-hidden="true"
     >
-      <use xlinkHref={`/icons.svg#icon-${name}`} />
+      <use href={`/icons.svg#icon-${name}`} />
     </svg>
   );
 };

@@ -1,0 +1,70 @@
+.section {
+  background-color: $light-color;
+  padding-top: 72px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featureList {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(1, 1fr);
+  margin-bottom: 120px;
+
+  @include mq("tablet") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include mq("desktop") {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.serviceList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.serviceItem {
+  width: 360px;
+  height: 300px;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; // Kluczowe, by overlay nie wystawał
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px; // Domyślna wysokość paska na dole
+  background: rgba(46, 47, 66, 0.7); // Półprzezroczysty granat/czarny
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Animacja
+  transition: height 0.3s ease-in-out;
+
+  .imageWrapper:hover & {
+    height: 100%; // Na hoverze rozciąga się na całość
+  }
+}
+
+.overlayText {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+}

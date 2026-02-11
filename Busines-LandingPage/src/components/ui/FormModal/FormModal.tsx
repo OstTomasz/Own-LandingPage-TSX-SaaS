@@ -4,14 +4,15 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
+import { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Fragment } from "react";
+import { z } from "zod";
+import toast from "react-hot-toast";
+
 import styles from "./FormModal.module.scss";
 import { Icon } from "../Icon/Icon";
-import { Button } from "../Button/Button"; // Import Twojego komponentu
-
-import { z } from "zod";
+import { Button } from "../Button/Button";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -33,9 +34,9 @@ interface Props {
 export const FormModal = ({ isOpen, onClose }: Props) => {
   const {
     register,
-    handleSubmit, // Pobieramy handleSubmit
+    handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
-    reset, // Warto dodać, żeby wyczyścić formularz po zamknięciu
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
     mode: "onBlur",
@@ -49,15 +50,18 @@ export const FormModal = ({ isOpen, onClose }: Props) => {
   });
 
   const onSubmit = async (data: ContactFormData) => {
-    try {
+    const sendData = async () => {
       console.log("Form Data:", data);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      alert("Form sent successfully!");
-      reset(); // Czyścimy pola po sukcesie
-      onClose(); // Zamykamy modal
-    } catch (error) {
-      console.error("Submission error", error);
-    }
+      await new Promise((res) => setTimeout(res, 1500));
+      reset();
+      onClose();
+    };
+
+    await toast.promise(sendData(), {
+      loading: "Sending your message...",
+      success: "Form sent successfully! 🚀",
+      error: "Something went wrong.",
+    });
   };
 
   return (
@@ -65,10 +69,10 @@ export const FormModal = ({ isOpen, onClose }: Props) => {
       <Dialog as="div" className={styles.modalRoot} onClose={onClose}>
         <TransitionChild
           as={Fragment}
-          enter={styles.easeOut}
+          enter={styles.transition}
           enterFrom={styles.opacity0}
           enterTo={styles.opacity100}
-          leave={styles.easeIn}
+          leave={styles.transition}
           leaveFrom={styles.opacity100}
           leaveTo={styles.opacity0}
         >
@@ -94,49 +98,45 @@ export const FormModal = ({ isOpen, onClose }: Props) => {
               >
                 <Icon name="close-btn" size={15} />
               </button>
-              <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+
+              <form
+                className={styles.form}
+                onSubmit={handleSubmit(onSubmit)}
+                noValidate
+              >
                 <p className={styles.description}>
                   Leave your contacts and we will call you back
                 </p>
 
-                <div className={styles.field}>
-                  <label htmlFor="name">Name*</label>
-                  <div className={styles.inputWrapper}>
-                    <input {...register("name")} id="name" required />
-                    <div className={styles.icon}>
-                      <Icon name="person" size={18} />
+                {[
+                  { id: "name", label: "Name*", icon: "person", type: "text" },
+                  { id: "phone", label: "Phone*", icon: "phone", type: "tel" },
+                  {
+                    id: "email",
+                    label: "Email*",
+                    icon: "email",
+                    type: "email",
+                  },
+                ].map((input) => (
+                  <div key={input.id} className={styles.field}>
+                    <label htmlFor={input.id}>{input.label}</label>
+                    <div className={styles.inputWrapper}>
+                      <input
+                        {...register(input.id as keyof ContactFormData)}
+                        id={input.id}
+                        type={input.type}
+                      />
+                      <div className={styles.icon}>
+                        <Icon name={input.icon} size={18} />
+                      </div>
+                      {errors[input.id as keyof ContactFormData] && (
+                        <p className={styles.error}>
+                          {errors[input.id as keyof ContactFormData]?.message}
+                        </p>
+                      )}
                     </div>
                   </div>
-                  {errors.name && (
-                    <p className={styles.error}>{errors.name.message}</p>
-                  )}
-                </div>
-
-                <div className={styles.field}>
-                  <label htmlFor="phone">Phone*</label>
-                  <div className={styles.inputWrapper}>
-                    <input {...register("phone")} id="phone" required />
-                    <div className={styles.icon}>
-                      <Icon name="phone" size={18} />
-                    </div>
-                  </div>
-                  {errors.phone && (
-                    <p className={styles.error}>{errors.phone.message}</p>
-                  )}
-                </div>
-
-                <div className={styles.field}>
-                  <label htmlFor="email">Email*</label>
-                  <div className={styles.inputWrapper}>
-                    <input {...register("email")} id="email" required />
-                    <div className={styles.icon}>
-                      <Icon name="email" size={18} />
-                    </div>
-                  </div>
-                  {errors.email && (
-                    <p className={styles.error}>{errors.email.message}</p>
-                  )}
-                </div>
+                ))}
 
                 <div className={styles.field}>
                   <label htmlFor="comment">Comment</label>
@@ -148,12 +148,7 @@ export const FormModal = ({ isOpen, onClose }: Props) => {
                 </div>
 
                 <div className={styles.checkboxField}>
-                  <input
-                    type="checkbox"
-                    {...register("policy")}
-                    id="policy"
-                    required
-                  />
+                  <input type="checkbox" {...register("policy")} id="policy" />
                   <label htmlFor="policy">
                     I accept the terms and conditions of the{" "}
                     <a href="#">Privacy Policy</a>*
@@ -163,8 +158,11 @@ export const FormModal = ({ isOpen, onClose }: Props) => {
                   )}
                 </div>
 
-                {/* ZAMIANA NA TWÓJ KOMPONENT BUTTON */}
-                <Button type="submit" className={styles.submitBtn}>
+                <Button
+                  type="submit"
+                  className={styles.submitBtn}
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? "Sending..." : "Send"}
                 </Button>
               </form>

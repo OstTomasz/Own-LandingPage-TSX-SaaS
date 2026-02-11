@@ -9,10 +9,16 @@
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  transition:
-    background-color $transition-duration $transition-timing-function,
-    color $transition-duration $transition-timing-function,
-    box-shadow $transition-duration $transition-timing-function;
+  transition: all $transition-duration $transition-timing-function;
+
+  &.disabled {
+    background-color: $alternative-color;
+    border-color: $borderline-color;
+    color: $main-text-color;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+  }
 }
 
 .primary {

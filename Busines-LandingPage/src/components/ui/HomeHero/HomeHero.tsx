@@ -18,7 +18,7 @@ export const HomeHero = () => {
       <div className={styles.innerWrapper}>
         <picture className={styles.picture}>
           <source
-            media="(min-width: 1024px)"
+            media="(min-width: 1440px)"
             srcSet={`${desktop1x} 1x, ${desktop2x} 2x`}
           />
 

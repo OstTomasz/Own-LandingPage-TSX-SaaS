@@ -49,18 +49,18 @@ const SERVICES = [
 export const HomeServices = () => {
   return (
     <section className={styles.section}>
-      <div className={styles.container}>
-        <ul className={styles.featureList}>
-          {FEATURES.map((feat) => (
-            <li key={feat.id}>
-              <ServiceFeature
-                iconName={feat.icon}
-                title={feat.title}
-                description={feat.description}
-              />
-            </li>
-          ))}
-        </ul>
+      <ul className={styles.featureList}>
+        {FEATURES.map((feat) => (
+          <li key={feat.id}>
+            <ServiceFeature
+              iconName={feat.icon}
+              title={feat.title}
+              description={feat.description}
+            />
+          </li>
+        ))}
+      </ul>
+      <div className={styles.desktop}>
         <h2 className={styles.title}>Our Services</h2>
         <ul className={styles.serviceList}>
           {SERVICES.map((service) => (

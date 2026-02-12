@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: $backgroundalt-color;
+  background-color: $light-color;
 
   .headerInner {
     @include flex-center(row);

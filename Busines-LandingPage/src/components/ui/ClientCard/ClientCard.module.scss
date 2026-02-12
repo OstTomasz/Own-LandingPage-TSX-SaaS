@@ -1,0 +1,27 @@
+.item {
+  height: 100px;
+}
+
+.link {
+  @include flex-center();
+  padding-inline: 60px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid $alternative-borderline-color;
+  border-radius: 4px;
+  color: $alternative-borderline-color;
+  cursor: pointer;
+  transition:
+    border-color $transition-duration $transition-timing-function,
+    color $transition-duration $transition-timing-function;
+
+  &:hover,
+  &:focus {
+    border-color: $highlight-color;
+    color: $highlight-color;
+  }
+}
+
+.icon {
+  fill: currentColor;
+}

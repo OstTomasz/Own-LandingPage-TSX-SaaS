@@ -1,0 +1,26 @@
+.section {
+  @include flex-center(column);
+  padding: 50px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2.1rem;
+  line-height: 1.11;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  color: $main-text-color;
+  margin-bottom: 40px;
+}
+
+.list {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include mq("desktop") {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

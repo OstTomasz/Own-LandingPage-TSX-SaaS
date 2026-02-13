@@ -16,6 +16,10 @@ html {
 }
 a {
   text-decoration: none;
+  color: currentColor;
+  &:active {
+    color: currentColor;
+  }
 }
 ul {
   list-style: none;

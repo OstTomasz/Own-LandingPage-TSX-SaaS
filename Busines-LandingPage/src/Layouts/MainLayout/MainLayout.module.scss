@@ -1,5 +1,11 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 .mainContainer {
   @include flex-center(column);
+  flex-grow: 1;
   overflow-x: hidden;
   position: relative;
   background-color: $light-color;

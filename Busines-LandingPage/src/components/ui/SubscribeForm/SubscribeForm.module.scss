@@ -1,0 +1,63 @@
+.form {
+  @include flex-center;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 60px;
+  align-items: end;
+  gap: 20px;
+  width: 410px;
+
+  @include mq("tablet") {
+    margin-top: 0;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  @include mq("desktop") {
+    margin-top: 48px;
+  }
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @include mq("tablet") {
+    width: 264px;
+  }
+}
+
+.labelText {
+  position: absolute;
+  top: -30px;
+  left: 32%;
+  color: $light-color;
+  font-weight: 500;
+}
+
+.input {
+  background-color: transparent;
+  border: 1px solid $lightalpha-color;
+  border-radius: 4px;
+  height: 40px;
+  width: 250px;
+  padding: 8px 16px;
+  color: $light-color;
+  outline: none;
+  transition: border-color $transition-duration $transition-timing-function;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  &:focus {
+    border-color: $highlight-color;
+  }
+}
+
+.button {
+  @include flex-center();
+  gap: 1rem;
+  padding: 11px;
+}

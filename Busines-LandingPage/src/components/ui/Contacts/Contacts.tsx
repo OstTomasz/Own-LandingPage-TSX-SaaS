@@ -2,7 +2,7 @@ import clsx from "clsx";
 import styles from "./Contacts.module.scss";
 
 interface ContactsProps {
-  className?: string; // Opcjonalny prop na dodatkową klasę
+  className?: string;
 }
 export const Contacts = ({ className }: ContactsProps) => {
   return (

@@ -50,12 +50,6 @@ $breakpoints: (
   left: $left;
 }
 
-// Użycie:
-// .overlay {
-//   @include absolute($top: 0, $left: 0);
-//   width: 100%;
-// }
-
 @mixin aspect-ratio($width, $height) {
   aspect-ratio: $width / $height;
 
@@ -68,11 +62,6 @@ $breakpoints: (
     }
   }
 }
-
-// Użycie:
-// .video-container {
-//   @include aspect-ratio(16, 9);
-// }
 
 @mixin animated-underline() {
   display: inline-block;

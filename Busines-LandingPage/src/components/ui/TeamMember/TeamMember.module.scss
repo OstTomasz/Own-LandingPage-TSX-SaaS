@@ -5,11 +5,15 @@
     0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16),
     0px 2px 1px rgba(46, 47, 66, 0.08);
-  width: 264px;
+  width: 350px;
   overflow: hidden;
 
   &:hover .image {
     transform: scale(1.05);
+  }
+
+  @include mq("desktop") {
+    width: 264px;
   }
 }
 

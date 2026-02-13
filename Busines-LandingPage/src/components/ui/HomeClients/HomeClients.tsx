@@ -1,7 +1,6 @@
 import { ClientCard } from "../ClientCard/ClientCard";
 import styles from "./HomeClients.module.scss";
 
-// Tablica z nazwami ikon - zgodnie z Twoim sprite'em
 const CLIENT_ICONS = [
   "client1",
   "client2",

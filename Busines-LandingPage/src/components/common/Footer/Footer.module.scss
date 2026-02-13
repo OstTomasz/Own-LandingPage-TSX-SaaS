@@ -1,0 +1,63 @@
+.footer {
+  @include flex-center;
+  background-color: $backgroundmain-color;
+
+  padding: 50px 0;
+
+  @include mq("desktop") {
+    padding: 40px 0;
+  }
+}
+
+.container {
+  @include flex-center(column);
+  margin: 0 auto;
+  padding: 0 5%;
+
+  @include mq("tablet") {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    padding: 0 108px;
+    gap: 40px 24px;
+  }
+
+  @include mq("desktop") {
+    width: 1200px;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0 15px;
+  }
+}
+
+.infoWrapper {
+  text-align: center;
+  color: $light-color;
+
+  @include mq("tablet") {
+    text-align: left;
+    width: 264px;
+  }
+}
+
+.text {
+  color: $lightalpha-color;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  margin-top: 1rem;
+}
+
+.socialWrapper {
+  text-align: center;
+}
+
+.subtitle {
+  color: $light-color;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.subscribeWrapper {
+  width: 100%;
+}

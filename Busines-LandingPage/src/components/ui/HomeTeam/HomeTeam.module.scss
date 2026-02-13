@@ -18,14 +18,17 @@
   justify-content: center;
   gap: 72px 24px;
 
-  grid-template-columns: repeat(1, 264px);
+  grid-template-columns: repeat(1, 350px);
 
   @include mq("tablet") {
-    grid-template-columns: repeat(2, 264px);
+    grid-template-columns: repeat(2, 350px);
     gap: 64px 24px;
   }
 
   @include mq("desktop") {
     grid-template-columns: repeat(4, 264px);
+    margin: 0 auto;
+    width: 1200px;
+    justify-content: space-between;
   }
 }

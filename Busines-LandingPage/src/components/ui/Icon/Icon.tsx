@@ -1,4 +1,3 @@
-// src/components/ui/Icon/Icon.tsx
 import styles from "./Icon.module.scss";
 
 interface IconProps {

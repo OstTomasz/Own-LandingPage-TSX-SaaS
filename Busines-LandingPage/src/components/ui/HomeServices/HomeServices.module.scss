@@ -15,6 +15,8 @@
     grid-template-columns: repeat(2, 1fr);
   }
   @include mq("desktop") {
+    width: 1200px;
+    justify-content: space-between;
     grid-template-columns: repeat(4, 1fr);
     margin-bottom: 50px;
   }
@@ -31,6 +33,10 @@
   flex-wrap: wrap;
   gap: 24px;
   justify-content: center;
+  @include mq("desktop") {
+    width: 1200px;
+    justify-content: space-between;
+  }
 }
 
 .serviceItem {
@@ -62,7 +68,6 @@
   align-items: center;
   justify-content: center;
 
-  // Animacja
   transition: height $transition-duration $transition-timing-function;
 
   .imageWrapper:hover & {

@@ -9,7 +9,7 @@ interface ButtonProps {
   href?: string;
   className?: string;
   variant?: "primary" | "secondary";
-  disabled?: boolean; // Nowy opcjonalny prop
+  disabled?: boolean;
 }
 
 export const Button = ({
@@ -19,16 +19,15 @@ export const Button = ({
   href,
   className,
   variant = "primary",
-  disabled = false, // Domyślnie false
+  disabled = false,
 }: ButtonProps) => {
   const buttonClasses = clsx(
     styles.button,
     styles[variant],
     className,
-    disabled && styles.disabled, // Dodajemy klasę stylu dla stanu disabled
+    disabled && styles.disabled,
   );
 
-  // Funkcja zabezpieczająca kliknięcia, gdy przycisk jest wyłączony
   const handleClick = (e: React.MouseEvent) => {
     if (disabled) {
       e.preventDefault();
@@ -40,10 +39,10 @@ export const Button = ({
   if (href) {
     return (
       <a
-        href={disabled ? undefined : href} // Usuwamy link, gdy disabled
+        href={disabled ? undefined : href}
         className={buttonClasses}
         onClick={handleClick}
-        aria-disabled={disabled} // A11y: informacja dla czytników ekranu
+        aria-disabled={disabled}
       >
         {children}
       </a>
@@ -55,7 +54,7 @@ export const Button = ({
       type={type}
       className={buttonClasses}
       onClick={onClick}
-      disabled={disabled} // Natywny atrybut HTML
+      disabled={disabled}
     >
       {children}
     </button>

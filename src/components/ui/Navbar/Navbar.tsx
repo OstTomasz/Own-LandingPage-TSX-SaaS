@@ -1,11 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import clsx from "clsx";
-import styles from "./Navbar.module.scss";
-import { Icon } from "../Icon/Icon";
 
-import { useState, Activity, useEffect } from "react";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+
+import { QUERIES } from "@/styles/breakpoints";
+import styles from "./Navbar.module.scss";
+
 import { NAV_LINKS } from "@/data/navlinks";
+import { NavLink } from "react-router-dom";
 import { MobileMenu } from "../MobileMenu/MobileMenu";
+import { Icon } from "../Icon/Icon";
 
 const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
   clsx(styles.navlink, isActive && styles.activeLink);
@@ -13,23 +17,18 @@ const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
+  const isDesktop = useMediaQuery(QUERIES.tablet);
 
-    const handleTabletChange = (e: MediaQueryListEvent | MediaQueryList) => {
-      if (e.matches) {
-        setIsMenuOpen(false);
-      }
-    };
+  if (isDesktop && isMenuOpen) {
+    setIsMenuOpen(false);
+  }
 
-    mediaQuery.addEventListener("change", handleTabletChange);
-
-    return () => mediaQuery.removeEventListener("change", handleTabletChange);
-  }, []);
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <div>
-      <nav aria-label="Main navigation">
+    <div className={styles.nav}>
+      <nav className={styles.navContainer} aria-label="Main navigation">
         <ul className={styles.navigation}>
           {NAV_LINKS.map(({ to, label }) => (
             <li key={to}>
@@ -39,23 +38,21 @@ export const Navbar = () => {
             </li>
           ))}
         </ul>
+        {!isDesktop && (
+          <button
+            className={styles["burger-btn"]}
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
+            type="button"
+          >
+            <Icon name={isMenuOpen ? "close" : "menu"} />
+          </button>
+        )}
       </nav>
-      <button
-        className={styles["burger-btn"]}
-        onClick={() => setIsMenuOpen(true)}
-        aria-label="Open menu"
-        type="button"
-      >
-        <Icon name="menu" />
-      </button>
-
-      <Activity mode={isMenuOpen ? "visible" : "hidden"}>
-        <MobileMenu
-          key={isMenuOpen ? "open" : "closed"}
-          isOpen={isMenuOpen}
-          onClose={() => setIsMenuOpen(false)}
-        />
-      </Activity>
+      {!isDesktop && isMenuOpen && (
+        <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />
+      )}
     </div>
   );
 };

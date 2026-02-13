@@ -2,27 +2,35 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  width: 100%;
   background-color: $light-color;
+  border-bottom: 1px solid transparent;
+  padding: 16px 0;
+
+  // Optymalizacja pod animację scrolla
+  will-change: padding, background-color, box-shadow;
+  transition:
+    padding $transition-params,
+    background-color $transition-params,
+    border-color $transition-params,
+    box-shadow $transition-params;
+
+  &.isScrolled {
+    padding: 8px 0;
+    background-color: rgba($light-color, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-bottom-color: $alternative-borderline-color;
+  }
+
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
 
   .headerInner {
     @include flex-center(row);
-    width: 100%;
     justify-content: space-between;
-    padding: 16px;
-    border-bottom: 1px solid transparent;
-
-    will-change: padding;
-
-    transition:
-      padding $transition-duration $transition-timing-function,
-      border-color $transition-duration $transition-timing-function,
-      box-shadow $transition-duration $transition-timing-function;
-
-    &.isScrolled {
-      padding: 5px 16px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
-      border-bottom-color: $alternative-borderline-color;
-    }
   }
 }

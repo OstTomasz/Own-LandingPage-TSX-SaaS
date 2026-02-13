@@ -27,6 +27,7 @@
 .navlink {
   @include animated-underline();
   @include fluid-type(1rem, 1.2rem);
+  width: fit-content;
 
   &.activeLink {
     color: $highlight-color;

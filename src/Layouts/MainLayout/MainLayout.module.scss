@@ -12,7 +12,7 @@
 }
 
 .pageAnimation {
-  animation: slideDown 0.5s $transition-timing-function forwards;
+  animation: slideDown $transition-params forwards;
 }
 
 @keyframes slideDown {

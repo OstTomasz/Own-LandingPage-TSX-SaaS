@@ -68,7 +68,7 @@
   align-items: center;
   justify-content: center;
 
-  transition: height $transition-duration $transition-timing-function;
+  transition: height $transition-params;
 
   .imageWrapper:hover & {
     height: 30%;

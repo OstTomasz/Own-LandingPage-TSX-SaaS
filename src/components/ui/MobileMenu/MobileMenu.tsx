@@ -1,8 +1,11 @@
 import clsx from "clsx";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 import styles from "./MobileMenu.module.scss";
+
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 import { Icon } from "../Icon/Icon";
 import { NAV_LINKS } from "@/data/navlinks";
@@ -18,34 +21,48 @@ const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
   clsx(styles.navlink, isActive && styles.activeLink);
 
 export const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
-  const [animate, setAnimate] = useState(false);
+  // 1. Blokujemy scroll gdy komponent jest zamontowany
+  const [isAnimating, setIsAnimating] = useState(false);
+  useBodyScrollLock(isOpen);
 
   useEffect(() => {
     if (isOpen) {
-      const timer = setTimeout(() => setAnimate(true), 10);
-      document.body.style.overflow = "hidden";
-      return () => {
-        clearTimeout(timer);
-        document.body.style.overflow = "";
-      };
-    } else {
-      document.body.style.overflow = "";
+      // Mały delay, aby przeglądarka zdążyła zarejestrować zmianę klas
+      const frame = requestAnimationFrame(() => setIsAnimating(true));
+      return () => cancelAnimationFrame(frame);
     }
   }, [isOpen]);
 
   const handleClose = () => {
-    setAnimate(false);
+    setIsAnimating(false); // Najpierw odpalamy animację wyjścia w CSS
+
+    // Czekamy tyle, ile trwa transition w SCSS (np. 350ms)
     setTimeout(() => {
       onClose();
     }, 350);
   };
 
-  return (
-    <div className={clsx(styles.overlay, animate && styles.isOpen)}>
-      <button className={styles.closeBtn} onClick={handleClose} type="button">
-        <Icon name="close-btn" size={15} />
-      </button>
+  // 2. Jeśli nie chcemy portalu, gdy menu jest całkiem zamknięte:
+  if (!isOpen) return null;
+
+  return createPortal(
+    <div
+      className={clsx(styles.overlay, isAnimating && styles.isVisible)}
+      role="dialog"
+      aria-modal="true"
+    >
+      {/* Kliknięcie w tło również zamyka z animacją */}
+      <div className={styles.backdrop} onClick={handleClose} />
+
       <div className={styles.overlayContent}>
+        <button
+          className={styles.closeBtn}
+          onClick={handleClose}
+          aria-label="Zamknij"
+        >
+          <Icon name="close-btn" size={15} />
+        </button>
+
         <nav className={styles.mobileNav}>
           {NAV_LINKS.map(({ to, label }) => (
             <NavLink
@@ -58,9 +75,14 @@ export const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
             </NavLink>
           ))}
         </nav>
-        <Contacts className={styles.mobileContacts} />
-        <SocialList />
+        <div className={styles.menuFooter}>
+          <Contacts className={styles.mobileContacts} />
+          <div className={styles.socialsWrapper}>
+            <SocialList variant="dark" />
+          </div>
+        </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 };

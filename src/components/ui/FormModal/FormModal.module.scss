@@ -1,5 +1,5 @@
 .transition {
-  transition: all $transition-duration $transition-timing-function;
+  transition: all $transition-params;
 }
 
 .opacity0 {
@@ -112,7 +112,7 @@
     padding-left: 38px;
     background-color: transparent;
     outline: transparent;
-    transition: border-color $transition-duration $transition-timing-function;
+    transition: border-color $transition-params;
 
     &:focus {
       border-color: $highlight-color;
@@ -150,7 +150,7 @@ textarea {
   padding: 8px 16px;
   outline: transparent;
   resize: none;
-  transition: border-color $transition-duration $transition-timing-function;
+  transition: border-color $transition-params;
 
   &:focus {
     border-color: $highlight-color;

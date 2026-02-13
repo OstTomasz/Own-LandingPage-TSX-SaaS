@@ -6,13 +6,23 @@ $breakpoints: (
   "mobile": 480px,
   "tablet": 768px,
   "desktop": 1440px,
-);
+) !default;
 
+/// Mixin do obsługi Media Queries
+/// @param {String} $breakpoint
 @mixin mq($breakpoint) {
   @if map.has-key($breakpoints, $breakpoint) {
-    @media screen and (min-width: map.get($breakpoints, $breakpoint)) {
+    $value: map.get($breakpoints, $breakpoint);
+
+    @media screen and (min-width: $value) {
       @content;
     }
+  } @else if type-of($breakpoint) == number {
+    @media screen and (min-width: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @warn "There is no such breakpoint: #{$breakpoint}. ";
   }
 }
 
@@ -70,8 +80,8 @@ $breakpoints: (
   will-change: transform; //prevent "jump" at the end of transition
 
   transition:
-    color v.$transition-duration v.$transition-timing-function 50ms,
-    transform v.$transition-duration v.$transition-timing-function 50ms;
+    color v.$transition-params 50ms,
+    transform v.$transition-params 50ms;
 
   position: relative;
 
@@ -86,8 +96,7 @@ $breakpoints: (
 
     transform: scaleX(0);
     transform-origin: bottom right;
-    transition: transform v.$transition-duration v.$transition-timing-function
-      50ms;
+    transition: transform v.$transition-params 50ms;
   }
 
   &:hover {

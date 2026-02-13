@@ -12,8 +12,8 @@
   color: $alternative-borderline-color;
   cursor: pointer;
   transition:
-    border-color $transition-duration $transition-timing-function,
-    color $transition-duration $transition-timing-function;
+    border-color $transition-params,
+    color $transition-params;
 
   &:hover,
   &:focus {

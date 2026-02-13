@@ -3,22 +3,49 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background-color: $highlight-color;
-  color: $light-color;
   border: 1px solid transparent;
+
+  // Optymalizacja pod animację koloru
+  will-change: background-color, color, transform;
   transition:
-    background-color $transition-duration $transition-timing-function,
-    border-color $transition-duration $transition-timing-function,
-    color $transition-duration $transition-timing-function;
+    background-color $transition-params,
+    border-color $transition-params,
+    color $transition-params,
+    transform $transition-params;
+
+  svg {
+    fill: currentColor; // Dzięki temu ikona zawsze bierze kolor z tekstu linku
+  }
 
   &:hover,
   &:focus {
-    background-color: $background-light-color;
-    border-color: $highlight-color;
-    color: $highlight-color;
+    transform: translateY(
+      -3px
+    ); // Subtelny efekt uniesienia - Senior Level Detail
   }
 
-  svg {
-    fill: currentColor;
+  // Wariant CIEMNY (np. do MobileMenu na jasne tło)
+  &[data-variant="dark"] {
+    background-color: $highlight-color;
+    color: $light-color;
+
+    &:hover,
+    &:focus {
+      background-color: $background-light-color;
+      border-color: $highlight-color;
+      color: $highlight-color;
+    }
+  }
+
+  // Wariant JASNY (np. do Footera na ciemne tło)
+  &[data-variant="light"] {
+    background-color: $icon-on-dark-color; // Twoja zmienna #ffffff1a
+    color: $light-color;
+
+    &:hover,
+    &:focus {
+      background-color: $overlay-highlight; // Żywszy kolor przy hoverze na ciemnym tle
+      color: $light-color;
+    }
   }
 }

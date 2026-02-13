@@ -1,17 +1,23 @@
 import clsx from "clsx";
 import styles from "./Contacts.module.scss";
+import { CONTACT_DATA } from "@/data/config";
 
 interface ContactsProps {
   className?: string;
+  direction?: "row" | "column" | "auto";
 }
-export const Contacts = ({ className }: ContactsProps) => {
+
+export const Contacts = ({ className, direction = "auto" }: ContactsProps) => {
   return (
-    <address className={clsx(styles.contacts, className)}>
-      <a href="mailto:ost.tomasz@gmail.com" className={styles.link}>
-        ost.tomasz@gmail.com
+    <address
+      className={clsx(styles.contacts, className)}
+      data-direction={direction}
+    >
+      <a href={`mailto:${CONTACT_DATA.email}`} className={styles.link}>
+        {CONTACT_DATA.email}
       </a>
-      <a href="tel:+48513738524" className={styles.link}>
-        +48 513 738 524
+      <a href={`tel:${CONTACT_DATA.phoneRaw}`} className={styles.link}>
+        {CONTACT_DATA.phone}
       </a>
     </address>
   );

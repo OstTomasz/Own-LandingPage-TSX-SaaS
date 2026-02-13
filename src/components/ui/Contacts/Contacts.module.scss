@@ -1,14 +1,24 @@
 .contacts {
-  display: none;
+  display: flex;
   font-style: normal;
   font-family: "Roboto", sans-serif;
-  @include mq("tablet") {
-    @include flex-center(column);
-    gap: 10px;
+
+  &[data-direction="auto"] {
+    display: none;
+
+    @include mq("tablet") {
+      @include flex-center(column);
+      gap: 10px;
+    }
+    @include mq("desktop") {
+      flex-direction: row;
+      gap: 40px;
+    }
   }
-  @include mq("desktop") {
-    flex-direction: row;
-    gap: 40px;
+
+  &[data-direction="column"] {
+    flex-direction: column;
+    gap: 16px;
   }
 }
 
@@ -16,9 +26,11 @@
   @include animated-underline();
   @include fluid-type(0.9rem, 1.1rem);
   color: $alternative-color;
-  font-size: 1.5rem;
+  text-decoration: none;
   width: fit-content;
-  @include mq("tablet") {
-    font-size: 1rem;
+  transition: color $transition-params;
+
+  &:hover {
+    color: $highlight-color;
   }
 }

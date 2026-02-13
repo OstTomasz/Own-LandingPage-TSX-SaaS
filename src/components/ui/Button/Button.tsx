@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
+import { ReactNode, MouseEvent } from "react";
 import clsx from "clsx";
 import styles from "./Button.module.scss";
 
 interface ButtonProps {
   children: ReactNode;
   type?: "button" | "submit" | "reset";
-  onClick?: () => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
   href?: string;
   className?: string;
   variant?: "primary" | "secondary";
@@ -21,27 +21,25 @@ export const Button = ({
   variant = "primary",
   disabled = false,
 }: ButtonProps) => {
-  const buttonClasses = clsx(
-    styles.button,
-    styles[variant],
-    className,
-    disabled && styles.disabled,
-  );
-
-  const handleClick = (e: React.MouseEvent) => {
-    if (disabled) {
-      e.preventDefault();
-      return;
-    }
-    onClick?.();
+  const commonProps = {
+    className: clsx(styles.button, className),
+    "data-variant": variant,
+    "data-disabled": disabled,
+    onClick: (e: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+      if (disabled) {
+        e.preventDefault();
+        return;
+      }
+      onClick?.(e);
+    },
   };
 
   if (href) {
     return (
       <a
         href={disabled ? undefined : href}
-        className={buttonClasses}
-        onClick={handleClick}
+        {...commonProps}
+        role="button"
         aria-disabled={disabled}
       >
         {children}
@@ -50,12 +48,7 @@ export const Button = ({
   }
 
   return (
-    <button
-      type={type}
-      className={buttonClasses}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button type={type} disabled={disabled} {...commonProps}>
       {children}
     </button>
   );

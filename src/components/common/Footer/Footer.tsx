@@ -17,7 +17,7 @@ export const Footer = () => {
 
         <div className={styles.socialWrapper}>
           <p className={styles.subtitle}>Social media</p>
-          <SocialList />
+          <SocialList variant="light" />
         </div>
 
         <div className={styles.subscribeWrapper}>

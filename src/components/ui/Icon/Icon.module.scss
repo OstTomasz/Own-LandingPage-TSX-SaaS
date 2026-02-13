@@ -1,11 +1,16 @@
 .icon {
   display: inline-block;
-  stroke-width: 0;
-  stroke: currentColor;
+  // Ustawiamy fill na currentColor, aby ikona
+  // automatycznie przyjmowała kolor tekstu rodzica
   fill: currentColor;
-  transition: fill $transition-duration $transition-timing-function;
+  stroke: currentColor;
+  stroke-width: 0;
 
-  &:hover {
-    fill: $highlight-color;
-  }
+  // Wspieramy płynne przejście kolorów, gdy rodzic zmienia kolor
+  transition:
+    fill $transition-params,
+    stroke $transition-params;
+
+  // Rezygnujemy z &:hover tutaj.
+  // To SocialIcon.module.scss powinien zarządzać kolorem ikony!
 }

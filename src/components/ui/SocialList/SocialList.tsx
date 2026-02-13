@@ -1,18 +1,12 @@
+import { SOCIAL_DATA } from "@/data/config";
 import { SocialIcon } from "../SocialIcon/SocialIcon";
 import styles from "./SocialList.module.scss";
 
-const SOCIAL_DATA = [
-  { id: "instagram", href: "https://instagram.com", label: "Instagram" },
-  { id: "twitter", href: "https://twitter.com", label: "Twitter" },
-  { id: "facebook", href: "https://facebook.com", label: "Facebook" },
-  {
-    id: "linkedin",
-    href: "https://linkedin.com/in/tomasz-ostaszewski-7166071aa",
-    label: "LinkedIn",
-  },
-];
+interface SocialListProps {
+  variant?: "light" | "dark"; // dark (na jasne tło menu), light (na ciemne tło footera)
+}
 
-export const SocialList = () => {
+export const SocialList = ({ variant = "dark" }: SocialListProps) => {
   return (
     <ul className={styles.list}>
       {SOCIAL_DATA.map((social) => (
@@ -21,6 +15,7 @@ export const SocialList = () => {
           name={social.id}
           href={social.href}
           label={social.label}
+          variant={variant} // Przekazujemy wariant dalej
         />
       ))}
     </ul>

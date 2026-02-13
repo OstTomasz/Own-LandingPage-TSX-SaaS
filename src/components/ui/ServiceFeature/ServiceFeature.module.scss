@@ -7,8 +7,8 @@
   border: 1px solid transparent;
   border-radius: 1%;
   transition:
-    box-shadow $transition-duration $transition-timing-function,
-    border-color $transition-duration $transition-timing-function;
+    box-shadow $transition-params,
+    border-color $transition-params;
 
   @include mq("desktop") {
     width: 270px;

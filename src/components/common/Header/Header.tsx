@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import { useState, useEffect } from "react";
+import clsx from "clsx";
 import styles from "./Header.module.scss";
 
 import { Logo } from "@/components/ui/Logo/Logo";
@@ -14,8 +14,9 @@ export const Header = () => {
       const offset = window.scrollY;
 
       setIsScrolled((prev) => {
-        if (prev && offset < 10) return false;
-        if (!prev && offset > 30) return true;
+        // Histereza zapobiegająca pętli (flicker)
+        if (!prev && offset > 50) return true; // Włączamy przy 50px
+        if (prev && offset < 10) return false; // Wyłączamy dopiero przy 10px
         return prev;
       });
     };
@@ -25,13 +26,13 @@ export const Header = () => {
   }, []);
 
   return (
-    <header className={styles.header}>
-      <div
-        className={clsx(styles.headerInner, isScrolled && styles.isScrolled)}
-      >
-        <Logo />
-        <Navbar />
-        <Contacts />
+    <header className={clsx(styles.header, isScrolled && styles.isScrolled)}>
+      <div className={styles.container}>
+        <div className={styles.headerInner}>
+          <Logo variant="light" />
+          <Navbar />
+          <Contacts direction="auto" />
+        </div>
       </div>
     </header>
   );

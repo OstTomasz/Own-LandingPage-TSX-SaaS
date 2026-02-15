@@ -9,10 +9,15 @@ import desktop1x from "@/assets/images/headline-background-max.jpg";
 import desktop2x from "@/assets/images/headline-background-max@2x.jpg";
 
 import { Button } from "../Button/Button";
-import { FormModal } from "../FormModal/FormModal";
+
+import { Modal } from "../Modal/Modal";
+import { OrderForm } from "../OrderForm/OrderForm";
 
 export const HomeHero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCloseModal = () => setIsModalOpen(false);
+  const handleOpenModal = () => setIsModalOpen(true);
   return (
     <section className={styles.hero}>
       <div className={styles.innerWrapper}>
@@ -40,14 +45,13 @@ export const HomeHero = () => {
             <h1 className={styles.title}>
               Effective Solutions for Your Business
             </h1>
-            <Button onClick={() => setIsModalOpen(true)}>Order Service</Button>
+            <Button onClick={handleOpenModal}>Order Service</Button>
           </div>
         </div>
       </div>
-      <FormModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      ></FormModal>
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <OrderForm onSuccess={handleCloseModal} />
+      </Modal>
     </section>
   );
 };

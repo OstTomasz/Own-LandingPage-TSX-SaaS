@@ -7,10 +7,10 @@ import styles from "./MobileMenu.module.scss";
 
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
-import { Icon } from "../Icon/Icon";
 import { NAV_LINKS } from "@/data/navlinks";
 import { Contacts } from "../Contacts/Contacts";
 import { SocialList } from "../SocialList/SocialList";
+import { CloseButton } from "../CloseBtn/CloseBtn";
 
 interface MobileMenuProps {
   onClose: () => void;
@@ -55,13 +55,7 @@ export const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
       <div className={styles.backdrop} onClick={handleClose} />
 
       <div className={styles.overlayContent}>
-        <button
-          className={styles.closeBtn}
-          onClick={handleClose}
-          aria-label="Zamknij"
-        >
-          <Icon name="close-btn" size={15} />
-        </button>
+        <CloseButton onClick={handleClose} />
 
         <nav className={styles.mobileNav}>
           {NAV_LINKS.map(({ to, label }) => (

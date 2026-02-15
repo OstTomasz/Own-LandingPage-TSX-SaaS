@@ -49,23 +49,6 @@
   transition: transform $transition-params;
 }
 
-.closeBtn {
-  align-self: flex-end;
-  @include flex-center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid $alternative-borderline-color;
-  background: $background-light-color;
-  cursor: pointer;
-  margin-bottom: 40px;
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: rotate(90deg);
-  }
-}
-
 .mobileNav {
   display: flex;
   flex-direction: column;

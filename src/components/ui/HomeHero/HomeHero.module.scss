@@ -1,6 +1,6 @@
 .hero {
-  width: 100vw;
-  background-color: $backgroundmain-color;
+  width: 100%;
+  background-color: #2e2f42;
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -10,19 +10,22 @@
   position: relative;
   width: 100%;
   max-width: 1440px;
-  min-height: 432px;
+
+  // Zwiększona wysokość sekcji
+  height: 432px; // Mobile (możesz zwiększyć do np. 500px, jeśli chcesz)
+
+  @include mq("tablet") {
+    height: 600px; // Zwiększone z 436px
+  }
+
+  @include mq("desktop") {
+    height: 700px; // Zwiększone z 600px
+  }
+
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
-
-  @include mq("tablet") {
-    min-height: 436px;
-  }
-
-  @include mq("desktop") {
-    min-height: 600px;
-  }
 }
 
 .picture {
@@ -41,13 +44,16 @@
   position: relative;
   width: 100%;
   background-color: rgba(46, 47, 66, 0.7);
-  display: flex;
-  align-items: center;
-  padding-block: 30px;
+
+  // Zmniejszony padding (overlay staje się smuklejszy)
+  padding-block: 48px;
 
   @include mq("desktop") {
-    padding-block: 40px;
+    padding-block: 60px; // Zmniejszone z 80px
   }
+
+  display: flex;
+  align-items: center;
 }
 
 .container {
@@ -57,22 +63,26 @@
   margin: 0 auto;
   padding: 0 16px;
   text-align: center;
-  gap: 30px;
+
+  // Lekko zmniejszony gap, by pasował do smuklejszego paska
+  gap: 32px;
+
   @include mq("desktop") {
-    gap: 40px;
+    gap: 48px;
   }
 }
 
 .title {
   color: $light-color;
   font-family: "Roboto", sans-serif;
-  font-size: 2.2rem;
-  line-height: 1.11;
-  max-width: 320px;
+  font-weight: 700;
+  line-height: 1.07;
+  letter-spacing: 0.02em;
   margin: 0;
 
+  @include fluid-type(36px, 56px);
+
   @include mq("tablet") {
-    font-size: 3.5rem;
     max-width: 496px;
   }
 }

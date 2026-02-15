@@ -16,6 +16,7 @@ body,
 html {
   margin: 0;
   padding: 0;
+  scrollbar-gutter: stable;
 }
 a {
   text-decoration: none;
@@ -35,4 +36,35 @@ h2,
 h3,
 h4 {
   margin: 0;
+}
+
+// Dla przeglądarek opartych na Webkit
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  // Tor powinien mieć ten sam kolor co tło Twojej strony/sekcji
+  background: $backgroundalt-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(
+    $highlight-color,
+    0.6
+  ); // Lekka przezroczystość na starcie
+  border-radius: 20px;
+  // Border MUSI mieć ten sam kolor co track, żeby stworzyć efekt "pływającej wyspy"
+  border: 3px solid $backgroundalt-color;
+
+  &:hover {
+    background-color: $highlight-color; // Pełny Iris przy interakcji
+  }
+}
+
+// Dla Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $highlight-color $backgroundalt-color;
 }

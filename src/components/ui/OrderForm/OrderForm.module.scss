@@ -1,0 +1,179 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.description {
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: $main-text-color;
+  margin-bottom: 8px;
+  // font-size: 1rem; <-- Usunięte (domyślne)
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  label {
+    font-size: 0.75rem; // 12px
+    line-height: 1.17;
+    letter-spacing: 0.04em;
+    color: $alternative-borderline-color;
+  }
+}
+
+.inputWrapper {
+  position: relative;
+  padding-bottom: 15px;
+
+  input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid $alternative-borderline-color;
+    border-radius: 4px;
+    padding-left: 38px;
+    background-color: transparent;
+    outline: transparent;
+    transition: border-color $transition-params;
+
+    &:focus {
+      border-color: $highlight-color;
+      & + .icon {
+        color: $highlight-color;
+      }
+    }
+
+    &.inputError {
+      border-color: #ff0000;
+    }
+  }
+}
+
+.icon {
+  position: absolute;
+  left: 12px;
+  top: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $main-text-color;
+  transition: color $transition-params;
+  pointer-events: none;
+}
+
+.textarea {
+  width: 100%;
+  height: 120px;
+  font-size: 0.75rem; // 12px
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: $main-text-color;
+  border: 1px solid $alternative-borderline-color;
+  border-radius: 4px;
+  background-color: transparent;
+  padding: 8px 16px;
+  outline: transparent;
+  resize: none;
+  transition: border-color $transition-params;
+
+  &:focus {
+    border-color: $highlight-color;
+  }
+}
+
+.hiddenCheckbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+
+  // Focus-visible dla klawiatury
+  &:focus-visible + .checkboxLabel .customCheckbox {
+    outline: 2px solid $highlight-color;
+    outline-offset: 2px;
+  }
+}
+
+.checkboxField {
+  position: relative;
+  margin-top: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-bottom: 15px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.75rem; // 12px
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: $alternative-borderline-color;
+
+  a {
+    color: $highlight-color;
+    text-decoration: underline;
+  }
+}
+
+.customCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $alternative-borderline-color;
+  transition: color $transition-params;
+
+  // Łączymy stałe wymiary z Twoimi animacjami
+
+  // Efekt po zaznaczeniu
+  .hiddenCheckbox:checked + .checkboxLabel & {
+    color: $highlight-color;
+
+    .checkboxSvg {
+      // Twoja animacja "puknięcia"
+      animation: checkbox-pop $transition-params;
+    }
+  }
+}
+
+.error {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 0.625rem; // 10px
+  color: #ff0000;
+  margin: 0;
+}
+
+.submitBtn {
+  margin: 24px auto 0;
+  min-width: 169px;
+}
+
+// Animacja dla lepszego feelingu
+@keyframes checkbox-pop {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

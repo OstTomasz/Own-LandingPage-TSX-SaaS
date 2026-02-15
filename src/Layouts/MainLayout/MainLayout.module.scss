@@ -1,27 +1,12 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
 .mainContainer {
-  @include flex-center(column);
+  display: flex; // Zamiast flex-center, użyjmy standardowego flexa
+  flex-direction: column;
   flex-grow: 1;
-  overflow-x: hidden;
-  position: relative;
+  width: 100%; // Kluczowe: kontener musi brać 100%
   background-color: $light-color;
 }
 
 .pageAnimation {
+  width: 100%; // To pozwala sekcjom wewnątrz (np. Hero) rozciągnąć się na całą szerokość
   animation: slideDown $transition-params forwards;
-}
-
-@keyframes slideDown {
-  0% {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }

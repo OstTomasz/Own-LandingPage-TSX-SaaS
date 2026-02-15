@@ -1,9 +1,4 @@
-import {
-  useForm,
-  useWatch,
-  UseFormRegisterReturn,
-  FieldError,
-} from "react-hook-form"; // Dodano useWatch
+import { useForm, UseFormRegisterReturn, FieldError } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { contactFormSchema, ContactFormData } from "./validation";
@@ -50,18 +45,10 @@ export const OrderForm = ({ onSuccess }: { onSuccess: () => void }) => {
     register,
     handleSubmit,
     reset,
-    control, // Dodano control dla useWatch
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
     mode: "onBlur",
-  });
-
-  // Śledzimy stan checkboxa
-  const isPolicyAccepted = useWatch({
-    control,
-    name: "policy",
-    defaultValue: false,
   });
 
   const onSubmit = async (data: ContactFormData) => {
@@ -126,12 +113,13 @@ export const OrderForm = ({ onSuccess }: { onSuccess: () => void }) => {
         <label htmlFor="policy" className={styles.checkboxLabel}>
           <span className={styles.customCheckbox}>
             <Icon
-              name={isPolicyAccepted ? "check" : "checkbox"}
-              className={styles.checkboxSvg}
-              size={20}
+              name="checkbox"
+              size={24}
+              className={styles.checkmarkUnchecked}
             />
+            <Icon name="check" size={16} className={styles.checkmarkChecked} />
           </span>
-          <span>
+          <span className={styles.policyInfo}>
             I accept the terms and conditions of the{" "}
             <a
               href="https://www.google.com"

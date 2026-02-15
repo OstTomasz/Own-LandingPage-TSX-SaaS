@@ -10,3 +10,13 @@
   width: 100%; // To pozwala sekcjom wewnątrz (np. Hero) rozciągnąć się na całą szerokość
   animation: slideDown $transition-params forwards;
 }
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px); // Delikatny zjazd z góry
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

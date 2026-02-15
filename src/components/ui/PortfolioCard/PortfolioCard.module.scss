@@ -1,0 +1,115 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; // Karta wypełnia całe <li>
+  background-color: $light-color;
+  border: 1px solid $alternative-borderline-color;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform $transition-params,
+    box-shadow $transition-params;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      0px 1px 6px rgba(46, 47, 66, 0.08),
+      0px 1px 1px rgba(46, 47, 66, 0.16),
+      0px 2px 1px rgba(46, 47, 66, 0.08);
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%; // Gwarantuje pełną szerokość
+
+  // Na mobile używamy proporcji, żeby obrazek nie był zbyt wysoki
+  aspect-ratio: 16 / 9;
+
+  @include mq("tablet") {
+    // Na tablecie i desktopie wracamy do Twoich proporcji projektowych
+    aspect-ratio: 360 / 300;
+    height: 300px;
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // TO JEST KLUCZ: obrazek wypełni kontener bez deformacji
+  object-position: center;
+}
+
+.info {
+  // Usuwamy standardowy padding na rzecz precyzyjnego sterowania
+  margin-block: auto;
+  padding: 20px;
+
+  // Mechanizm wyrównywania
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Tytuł na górze, kategoria na dole
+
+  flex-grow: 1; // Wypełnia resztę karty
+  min-height: 120px; // Gwarantuje, że sekcja info nie będzie za mała przy krótkich tekstach
+}
+
+.title {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: $main-text-color;
+  margin-bottom: 8px; // Odstęp od kategorii, gdyby teksty były bardzo długie
+}
+
+.category {
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: $alternative-color;
+  // Nie potrzebujemy już margin-top: auto, bo mamy space-between w rodzicu
+}
+
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 360 / 300;
+  flex-shrink: 0;
+
+  @include mq("tablet") {
+    height: 300px;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 40px 32px;
+  background-color: rgba(
+    $highlight-color,
+    0.9
+  ); // Twoje 4D5AE5 z przezroczystością
+
+  // Stan początkowy (ukryty na dole)
+  transform: translateY(100%);
+  transition: transform $transition-params;
+
+  // Wjazd przy hoverze na całą kartę
+  .card:hover & {
+    transform: translateY(0);
+  }
+}
+
+.overlayText {
+  color: $light-color;
+  font-size: 1.125rem; // Powiększona czcionka (ok. 18px)
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}

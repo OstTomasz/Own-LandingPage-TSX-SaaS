@@ -1,0 +1,64 @@
+.section {
+  padding: 48px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 428px;
+  margin: 0 auto;
+  // Margines bezpieczeństwa, aby karty nie dotykały krawędzi ekranu na mobile
+  padding-inline: 15px;
+
+  @include mq("tablet") {
+    max-width: 768px;
+  }
+
+  @include mq("desktop") {
+    max-width: 1158px;
+  }
+}
+.listWrapper {
+  width: 100%;
+  // Ustaw min-height odpowiadający mniej więcej wysokości jednego rzędu kart na mobile
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; // Centrowanie kart, gdy jest ich mniej w rzędzie
+  gap: 48px;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto; // Centrowanie samej listy
+  width: 100%;
+
+  @include mq("tablet") {
+    gap: 72px 24px;
+  }
+
+  @include mq("desktop") {
+    gap: 48px 24px;
+    justify-content: flex-start; // Na desktopie zazwyczaj od lewej, ale możesz dać center
+  }
+}
+
+.listItem {
+  width: 100%;
+  display: flex;
+  // Wyłączamy domyślne zachowanie flex-shrink, żeby Framer nie zgniatał kart
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  @include mq("tablet") {
+    width: calc((100% - 24px) / 2);
+  }
+
+  @include mq("desktop") {
+    width: calc((100% - 48px) / 3);
+  }
+}

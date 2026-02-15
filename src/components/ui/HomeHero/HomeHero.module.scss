@@ -3,53 +3,45 @@
   background-color: #2e2f42;
   display: flex;
   justify-content: center;
-  overflow: hidden;
 }
 
 .innerWrapper {
   position: relative;
-  width: 100%;
-  max-width: 1440px;
+  // KLUCZ: Szerokość obrazka to 1200px
+  width: 1200px;
+  max-width: 100%; // Zabezpieczenie na mniejsze ekrany
+  margin: 0 auto;
 
-  // Zwiększona wysokość sekcji
-  height: 432px; // Mobile (możesz zwiększyć do np. 500px, jeśli chcesz)
-
-  @include mq("tablet") {
-    height: 600px; // Zwiększone z 436px
-  }
-
-  @include mq("desktop") {
-    height: 700px; // Zwiększone z 600px
-  }
-
+  // Usuwamy sztywne height - teraz wysokość zależy od obrazka
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
 }
 
 .picture {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
+  width: 100%;
+  display: block; // Obrazek definiuje wysokość .innerWrapper
 }
 
 .image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto; // Zachowuje proporcje obrazka
+  display: block;
 }
 
 .overlay {
-  position: relative;
-  width: 100%;
+  // Pasek na środku obrazka
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 2;
   background-color: rgba(46, 47, 66, 0.7);
 
-  // Zmniejszony padding (overlay staje się smuklejszy)
+  // Grubość paska regulujesz paddingiem
   padding-block: 48px;
 
   @include mq("desktop") {
-    padding-block: 60px; // Zmniejszone z 80px
+    padding-block: 60px;
   }
 
   display: flex;
@@ -59,30 +51,12 @@
 .container {
   @include flex-center(column);
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 0 16px;
   text-align: center;
-
-  // Lekko zmniejszony gap, by pasował do smuklejszego paska
   gap: 32px;
+  color: $light-color;
 
   @include mq("desktop") {
     gap: 48px;
-  }
-}
-
-.title {
-  color: $light-color;
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  line-height: 1.07;
-  letter-spacing: 0.02em;
-  margin: 0;
-
-  @include fluid-type(36px, 56px);
-
-  @include mq("tablet") {
-    max-width: 496px;
   }
 }

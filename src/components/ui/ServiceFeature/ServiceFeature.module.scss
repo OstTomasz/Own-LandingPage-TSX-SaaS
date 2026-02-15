@@ -38,17 +38,11 @@
 
 .featureTitle {
   font-weight: 700;
-  font-size: 2.25rem; // 36px na mobile dla mocnego uderzenia
-  line-height: 1.11;
+  font-size: 1.25rem; // 36px na mobile dla mocnego uderzenia
+  line-height: 1.2;
   letter-spacing: 0.02em;
   color: $main-text-color;
   margin-bottom: 8px;
-
-  @include mq("desktop") {
-    font-weight: 500;
-    font-size: 1.25rem; // 20px na desktopie (bardziej subtelnie)
-    line-height: 1.2;
-  }
 }
 
 .featureText {

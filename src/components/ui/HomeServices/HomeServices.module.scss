@@ -16,22 +16,24 @@
   gap: 24px;
   grid-template-columns: 1fr;
   width: 100%;
-  max-width: 1158px; // 1200 minus paddingi
+
   margin: 0 auto 50px;
   list-style: none;
 
   @include mq("tablet") {
     grid-template-columns: repeat(2, 1fr);
+    max-width: 630px;
   }
 
   @include mq("desktop") {
     grid-template-columns: repeat(4, 1fr);
+    max-width: 1200px;
   }
 }
 
 .desktop {
   width: 100%;
-  max-width: 1158px;
+  max-width: 1200px;
   margin: 0 auto;
 
   // Zamiast display: none, sterujemy widocznością kontenera usług
@@ -79,9 +81,10 @@
 .imageWrapper {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 300px;
   overflow: hidden;
-  border-radius: 4px; // Delikatny szlif dla profesjonalnego wyglądu
+  border-radius: 4px;
+  cursor: pointer;
 
   img {
     width: 100%;
@@ -91,36 +94,46 @@
     transition: transform $transition-params;
   }
 
-  &:hover img {
-    transform: scale(1.05); // Delikatny zoom obrazka przy hoverze
+  &:hover img,
+  &:focus-within img {
+    transform: scale(1.1);
   }
 }
 
 .overlay {
   position: absolute;
-  top: 0;
+  bottom: 0; // Przyklejamy do dołu
   left: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(77, 90, 229, 0.9); // Użyj koloru highlight z opacity
 
-  // Flex do centrowania tekstu
+  // Wysokość 1/4 obrazka (300px / 4 = 75px)
+  height: 75px;
+  background-color: rgba($overlay-color, 0.85);
+
   display: flex;
   align-items: center;
-  padding: 40px 32px;
+  justify-content: center;
+  padding: 0 20px;
 
-  // Stan początkowy: przesunięty w dół poza widok
-  transform: translateY(100%);
-  transition: transform $transition-params;
+  // Przejście dla wysokości
+  transition:
+    height $transition-params,
+    background-color $transition-params;
 
-  .imageWrapper:hover & {
-    transform: translateY(0); // Wjeżdża do góry
+  // Efekt po najechaniu: pasek lekko rośnie w górę
+  .imageWrapper:hover &,
+  .imageWrapper:focus-within & {
+    height: 90px; // Lekkie zwiększenie (np. do ~30% wysokości)
+    background-color: rgba($overlay-color, 0.95);
   }
 }
 
 .overlayText {
   color: $light-color;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.2;
+  font-weight: 500;
   letter-spacing: 0.02em;
+  text-align: center;
+  margin: 0;
 }

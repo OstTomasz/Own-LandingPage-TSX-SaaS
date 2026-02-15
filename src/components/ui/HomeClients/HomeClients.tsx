@@ -1,14 +1,6 @@
+import { CLIENT_ICONS } from "@/data/config";
 import { ClientCard } from "../ClientCard/ClientCard";
 import styles from "./HomeClients.module.scss";
-
-const CLIENT_ICONS = [
-  "client1",
-  "client2",
-  "client3",
-  "client4",
-  "client5",
-  "client6",
-];
 
 export const HomeClients = () => {
   return (

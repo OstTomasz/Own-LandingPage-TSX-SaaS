@@ -1,27 +1,26 @@
 .featureCard {
   display: flex;
   flex-direction: column;
-  align-items: center; // Zastąpienie flex-center, jeśli nie potrzebujesz centrowania w pionie całej karty
+  // Na mobile zazwyczaj centrujemy, ale od tabletu/desktopu
+  // lepiej wygląda wyrównanie do lewej, jeśli tekst jest krótki
+  align-items: center;
   text-align: center;
-  padding: 0;
   height: 100%;
-  width: 100%; // Karta zajmuje całą dostępną przestrzeń grida
-  max-width: 350px; // Ale nie więcej niż 350px
-  margin: 0 auto; // Centrowanie karty w kolumnie na mobile
-
-  border: 1px solid transparent;
-  border-radius: 4px; // Zmiana z 1% na px dla przewidywalności
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  border-radius: 4px;
   transition:
-    box-shadow $transition-params,
-    border-color $transition-params;
+    transform $transition-params,
+    box-shadow $transition-params;
 
-  @include mq("desktop") {
-    max-width: 270px;
+  @include mq("tablet") {
+    max-width: none; // Pozwólmy gridowi z HomeServices decydować o szerokości
   }
 
   &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Nieco wyraźniejszy cień
-    border-color: $alternative-borderline-color;
+    transform: translateY(-5px); // Delikatne uniesienie karty
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -29,26 +28,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 120px;
+  height: 112px; // Standard dla WebStudio (408px / 3.6 lub po prostu 112px)
   width: 100%;
   background-color: $backgroundalt-color;
   border-radius: 4px;
-  margin-bottom: 24px; // Spójność z grid gap
+  margin-bottom: 30px;
+  color: $main-text-color; // Kolor ikony, jeśli w spricie ma currentColor
 }
 
 .featureTitle {
   font-weight: 700;
-  font-size: 1.25rem;
-  line-height: 1.2;
+  font-size: 2.25rem; // 36px na mobile dla mocnego uderzenia
+  line-height: 1.11;
   letter-spacing: 0.02em;
-  color: $main-text-color; // Używamy głównego koloru dla czytelności
+  color: $main-text-color;
   margin-bottom: 8px;
+
+  @include mq("desktop") {
+    font-weight: 500;
+    font-size: 1.25rem; // 20px na desktopie (bardziej subtelnie)
+    line-height: 1.2;
+  }
 }
 
 .featureText {
+  font-size: 1rem;
   line-height: 1.5;
   letter-spacing: 0.02em;
-  color: $alternative-color;
+  color: $main-text-color; // Tekst musi być wyraźny
   padding-inline: 10px;
-  // max-width lepiej zostawić elastyczny, grid zajmie się szerokością
 }

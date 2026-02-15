@@ -1,30 +1,46 @@
 .section {
-  @include flex-center(column);
-  padding: 50px 0;
-  max-width: 1200px;
+  padding: 50px 15px; // Padding boczny dla mobile
   margin: 0 auto;
+
+  @include mq("tablet") {
+    max-width: 730px;
+    padding-inline: 0;
+  }
+  @include mq("desktop") {
+    max-width: none;
+  }
 }
 
 .title {
-  font-size: 2.1rem;
+  font-size: 2.25rem; // 36px - trzymamy spójność z Team/Services
   line-height: 1.11;
   text-align: center;
   letter-spacing: 0.02em;
-  text-transform: capitalize;
   color: $main-text-color;
-  margin-bottom: 40px;
+  margin-bottom: 50px; // Większy odstęp dla "oddechu"
 }
 
 .list {
   display: grid;
-  gap: 1.5rem;
+  gap: 16px; // Mniejszy gap na mobile
   grid-template-columns: repeat(2, 1fr);
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
 
   @include mq("tablet") {
     grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: none;
   }
 
   @include mq("desktop") {
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; // Pozwala ikonom przejść do nowej linii, jeśli zabraknie miejsca
+    gap: 24px;
+    max-width: 1200px; // Standardowa szerokość kontenera
+    margin: 0 auto;
   }
 }

@@ -31,12 +31,13 @@ export const HomeServices = () => {
               {/* tabIndex pozwala na focus klawiaturą, co wywoła hover w CSS (:focus-within) */}
               <div className={styles.imageWrapper} tabIndex={0}>
                 <img
-                  src={service.img}
-                  srcSet={`${service.img} 1x, ${service.img2x} 2x`}
+                  src={service.img} // Fallback
+                  srcSet={`${service.img} 1x, ${service.img2x} 2x`} // Prawidłowe ładowanie x2 na Retinę
                   alt={service.title}
                   loading="lazy"
                   width="360"
                   height="300"
+                  className={styles.serviceImage} // Dodaj klasę dla pewności
                 />
                 <div className={styles.overlay}>
                   <p className={styles.overlayText}>{service.title}</p>

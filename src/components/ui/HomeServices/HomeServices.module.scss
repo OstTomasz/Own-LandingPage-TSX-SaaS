@@ -1,31 +1,55 @@
+// Zmienne i mixiny zakładam, że masz zaimportowane w pliku głównym
+// $transition-params, $light-color, $main-text-color, $highlight-color itp.
+
 .section {
   @include flex-center(column);
   background-color: $light-color;
-  padding-block: 50px;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 50px 15px; // Dodany padding boczny, żeby na mobile treść nie dotykała krawędzi
+  width: 100%;
 }
 
+.hidden {
+  display: none;
+}
 .featureList {
   display: grid;
   gap: 24px;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 1158px; // 1200 minus paddingi
+  margin: 0 auto 50px;
+  list-style: none;
 
   @include mq("tablet") {
     grid-template-columns: repeat(2, 1fr);
   }
+
   @include mq("desktop") {
-    width: 1200px;
-    justify-content: space-between;
     grid-template-columns: repeat(4, 1fr);
-    margin-bottom: 50px;
+  }
+}
+
+.desktop {
+  width: 100%;
+  max-width: 1158px;
+  margin: 0 auto;
+
+  // Zamiast display: none, sterujemy widocznością kontenera usług
+  // Jeśli chcesz, żeby na mobile w ogóle nie było sekcji "Our Services":
+  display: none;
+  @include mq("desktop") {
+    display: block;
   }
 }
 
 .title {
-  font-size: 2.1rem;
-  padding-bottom: 30px;
-  justify-self: center;
+  font-size: 2.25rem; // 36px
+  line-height: 1.11;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  color: $main-text-color;
+  margin-bottom: 72px;
 }
 
 .serviceList {
@@ -33,15 +57,23 @@
   flex-wrap: wrap;
   gap: 24px;
   justify-content: center;
-  @include mq("desktop") {
-    width: 1200px;
-    justify-content: space-between;
-  }
+  list-style: none;
+  padding: 0;
 }
 
 .serviceItem {
-  width: 360px;
+  // Flex-basis pozwala na lepsze dopasowanie niż sztywne width
+  flex-basis: 100%;
+  max-width: 360px;
   height: 300px;
+
+  @include mq("tablet") {
+    flex-basis: calc((100% - 24px) / 2);
+  }
+
+  @include mq("desktop") {
+    flex-basis: calc((100% - 48px) / 3);
+  }
 }
 
 .imageWrapper {
@@ -49,40 +81,46 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  border-radius: 4px; // Delikatny szlif dla profesjonalnego wyglądu
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+    transition: transform $transition-params;
+  }
+
+  &:hover img {
+    transform: scale(1.05); // Delikatny zoom obrazka przy hoverze
   }
 }
 
 .overlay {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 70px;
-  background: rgba(46, 47, 66, 0.7);
+  height: 100%;
+  background-color: rgba(77, 90, 229, 0.9); // Użyj koloru highlight z opacity
+
+  // Flex do centrowania tekstu
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 40px 32px;
 
-  transition: height $transition-params;
+  // Stan początkowy: przesunięty w dół poza widok
+  transform: translateY(100%);
+  transition: transform $transition-params;
 
   .imageWrapper:hover & {
-    height: 30%;
+    transform: translateY(0); // Wjeżdża do góry
   }
 }
 
 .overlayText {
   color: $light-color;
-  font-weight: 500;
-}
-
-.desktop {
-  display: none;
-  @include mq("desktop") {
-    display: block;
-  }
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
 }

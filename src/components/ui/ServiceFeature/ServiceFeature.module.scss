@@ -1,47 +1,54 @@
 .featureCard {
-  @include flex-center(column);
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Zastąpienie flex-center, jeśli nie potrzebujesz centrowania w pionie całej karty
   text-align: center;
   padding: 0;
   height: 100%;
-  width: 350px;
+  width: 100%; // Karta zajmuje całą dostępną przestrzeń grida
+  max-width: 350px; // Ale nie więcej niż 350px
+  margin: 0 auto; // Centrowanie karty w kolumnie na mobile
+
   border: 1px solid transparent;
-  border-radius: 1%;
+  border-radius: 4px; // Zmiana z 1% na px dla przewidywalności
   transition:
     box-shadow $transition-params,
     border-color $transition-params;
 
   @include mq("desktop") {
-    width: 270px;
+    max-width: 270px;
   }
 
   &:hover {
-    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Nieco wyraźniejszy cień
     border-color: $alternative-borderline-color;
-    overflow: hidden;
   }
 }
+
 .iconWrapper {
-  @include flex-center();
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 120px;
+  width: 100%;
   background-color: $backgroundalt-color;
   border-radius: 4px;
-  margin-bottom: 28px;
-  width: 100%;
+  margin-bottom: 24px; // Spójność z grid gap
 }
 
 .featureTitle {
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   line-height: 1.2;
   letter-spacing: 0.02em;
-  color: $alternative-color;
+  color: $main-text-color; // Używamy głównego koloru dla czytelności
   margin-bottom: 8px;
-  margin-top: 8px;
 }
 
 .featureText {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: $alternative-color;
-  max-width: 264px;
+  padding-inline: 10px;
+  // max-width lepiej zostawić elastyczny, grid zajmie się szerokością
 }

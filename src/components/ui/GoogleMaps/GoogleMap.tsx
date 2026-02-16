@@ -2,21 +2,51 @@ import { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "./GoogleMap.module.scss";
 
-// Definicja typu dla elementów renderowanych na mapie, aby TS nie krzyczał o lat/lng
+// 1. Poprawiony interfejs - dodajemy opcjonalne propy biblioteki
 interface AnyMapElement {
   lat: number;
   lng: number;
   children?: React.ReactNode;
   className?: string;
   onClick?: () => void;
+  // Te propy są wstrzykiwane przez bibliotekę:
+  $hover?: boolean;
+  $getDimensions?: any;
+  $dimensionKey?: any;
+  $geoService?: any;
+  $onMouseAllow?: any;
+  $prerender?: boolean;
 }
 
-// Marker dopasowany do Twoich stylów SCSS z pulsem
-const Marker = ({ onClick }: AnyMapElement) => (
+// 2. Destrukturyzujemy propy biblioteki, aby NIE trafiły do div
+const Marker = ({
+  onClick,
+  $hover,
+  $getDimensions,
+  $dimensionKey,
+  $geoService,
+  $onMouseAllow,
+  $prerender,
+  ...rest
+}: AnyMapElement) => (
   <div className={styles.marker} onClick={onClick}>
     <div className={styles.icon} />
   </div>
 );
+
+// 3. To samo robimy dla InfoWindow
+const CustomInfoWindow = ({
+  children,
+  className,
+  onClick,
+  $hover,
+  $getDimensions,
+  $dimensionKey,
+  $geoService,
+  $onMouseAllow,
+  $prerender,
+  ...rest
+}: AnyMapElement) => <div className={className}>{children}</div>;
 
 const lubinCoords = { lat: 51.3971, lng: 16.2043 };
 
@@ -25,7 +55,6 @@ export const GoogleMap = () => {
 
   return (
     <div className={styles.mapContainer}>
-      {/* Overlay gradientowy z SCSS */}
       <div className={styles.overlay} />
 
       <div className={styles.mapWrapper}>
@@ -40,16 +69,12 @@ export const GoogleMap = () => {
               {
                 featureType: "landscape.natural",
                 elementType: "geometry.fill",
-                stylers: [{ visibility: "on" }, { color: "#e0efef" }],
+                stylers: [{ color: "#e0efef" }],
               },
               {
                 featureType: "poi",
                 elementType: "geometry.fill",
-                stylers: [
-                  { visibility: "on" },
-                  { hue: "#1900ff" },
-                  { color: "#c0e8e8" },
-                ],
+                stylers: [{ color: "#c0e8e8" }],
               },
               {
                 featureType: "road",
@@ -62,11 +87,6 @@ export const GoogleMap = () => {
                 stylers: [{ visibility: "off" }],
               },
               {
-                featureType: "transit.line",
-                elementType: "geometry",
-                stylers: [{ visibility: "on" }, { lightness: 700 }],
-              },
-              {
                 featureType: "water",
                 elementType: "all",
                 stylers: [{ color: "#7dcdcd" }],
@@ -75,26 +95,22 @@ export const GoogleMap = () => {
           }}
           onClick={() => setShowInfo(false)}
         >
-          {/* Marker z obsługą kliknięcia */}
           <Marker
             lat={lubinCoords.lat}
             lng={lubinCoords.lng}
             onClick={() => setShowInfo(!showInfo)}
           />
 
-          {/* InfoWindow z rzutowaniem typu, aby uniknąć błędu TS */}
           {showInfo && (
-            <div
-              {...({
-                lat: lubinCoords.lat,
-                lng: lubinCoords.lng,
-              } as AnyMapElement)}
+            <CustomInfoWindow
+              lat={lubinCoords.lat}
+              lng={lubinCoords.lng}
               className={styles.infoWindow}
             >
               <button
                 className={styles.closeBtn}
                 onClick={(e) => {
-                  e.stopPropagation(); // Zapobiega natychmiastowemu ponownemu otwarciu przez mapę
+                  e.stopPropagation();
                   setShowInfo(false);
                 }}
               >
@@ -109,7 +125,7 @@ export const GoogleMap = () => {
               >
                 Nawiguj
               </a>
-            </div>
+            </CustomInfoWindow>
           )}
         </GoogleMapReact>
       </div>

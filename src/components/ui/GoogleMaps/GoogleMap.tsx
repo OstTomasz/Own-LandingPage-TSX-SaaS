@@ -2,51 +2,34 @@ import { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styles from "./GoogleMap.module.scss";
 
-// 1. Poprawiony interfejs - dodajemy opcjonalne propy biblioteki
 interface AnyMapElement {
   lat: number;
   lng: number;
   children?: React.ReactNode;
   className?: string;
   onClick?: () => void;
-  // Te propy są wstrzykiwane przez bibliotekę:
+  // Zostawiamy unknown, żeby uniknąć błędu 'no-explicit-any'
   $hover?: boolean;
-  $getDimensions?: any;
-  $dimensionKey?: any;
-  $geoService?: any;
-  $onMouseAllow?: any;
+  $getDimensions?: unknown;
+  $dimensionKey?: unknown;
+  $geoService?: unknown;
+  $onMouseAllow?: unknown;
   $prerender?: boolean;
 }
 
-// 2. Destrukturyzujemy propy biblioteki, aby NIE trafiły do div
-const Marker = ({
-  onClick,
-  $hover,
-  $getDimensions,
-  $dimensionKey,
-  $geoService,
-  $onMouseAllow,
-  $prerender,
-  ...rest
-}: AnyMapElement) => (
-  <div className={styles.marker} onClick={onClick}>
+// Marker: Destrukturyzujemy propy, ale ich nie nazywamy.
+// Dzięki temu zostają "skonsumowane" i nie trafiają do 'div',
+// a ESLint nie widzi nieużywanych zmiennych.
+const Marker = ({ onClick }: AnyMapElement) => (
+  <div className={styles.marker} onClick={onClick} role="button" tabIndex={0}>
     <div className={styles.icon} />
   </div>
 );
 
-// 3. To samo robimy dla InfoWindow
-const CustomInfoWindow = ({
-  children,
-  className,
-  onClick,
-  $hover,
-  $getDimensions,
-  $dimensionKey,
-  $geoService,
-  $onMouseAllow,
-  $prerender,
-  ...rest
-}: AnyMapElement) => <div className={className}>{children}</div>;
+// InfoWindow: Ta sama logika
+const CustomInfoWindow = ({ children, className }: AnyMapElement) => (
+  <div className={className}>{children}</div>
+);
 
 const lubinCoords = { lat: 51.3971, lng: 16.2043 };
 

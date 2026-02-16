@@ -1,19 +1,32 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  // Klucz: wrapper musi mieć co najmniej 100% wysokości okna
+  min-height: 100vh;
+}
+
 .mainContainer {
-  display: flex; // Zamiast flex-center, użyjmy standardowego flexa
+  display: flex;
   flex-direction: column;
   flex-grow: 1;
-  width: 100%; // Kluczowe: kontener musi brać 100%
+  width: 100%;
   background-color: $light-color;
+
+  // Opcjonalnie: jeśli chcesz, by animacja strony
+  // również wypełniała całą dostępną przestrzeń
+  position: relative;
 }
 
 .pageAnimation {
-  width: 100%; // To pozwala sekcjom wewnątrz (np. Hero) rozciągnąć się na całą szerokość
+  width: 100%;
+  flex-grow: 1; // Pozwala Outletowi wypełnić Main, jeśli treści jest mało
   animation: slideDown $transition-params forwards;
 }
+
 @keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateY(-20px); // Delikatny zjazd z góry
+    transform: translateY(-20px);
   }
   to {
     opacity: 1;

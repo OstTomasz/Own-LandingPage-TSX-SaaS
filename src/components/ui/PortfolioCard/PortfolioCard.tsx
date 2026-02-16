@@ -24,7 +24,7 @@ export const PortfolioCard = ({
   imgMax2x,
 }: PortfolioCardProps) => {
   return (
-    <li className={styles.card}>
+    <div className={styles.card}>
       <div className={styles.imageWrapper}>
         <picture>
           {/* Desktop */}
@@ -58,6 +58,6 @@ export const PortfolioCard = ({
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.category}>{category}</p>
       </div>
-    </li>
+    </div>
   );
 };

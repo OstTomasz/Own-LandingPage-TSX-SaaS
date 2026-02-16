@@ -21,20 +21,20 @@
 }
 .listWrapper {
   width: 100%;
-  // Ustaw min-height odpowiadający mniej więcej wysokości jednego rzędu kart na mobile
-  min-height: 400px;
+  // To zapobiega zapadaniu się sekcji podczas animacji "wait"
+  min-height: 500px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
 }
 
 .list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; // Centrowanie kart, gdy jest ich mniej w rzędzie
+  justify-content: center;
   gap: 48px;
   list-style: none;
   padding: 0;
-  margin: 0 auto; // Centrowanie samej listy
+  margin: 0;
   width: 100%;
 
   @include mq("tablet") {
@@ -43,7 +43,7 @@
 
   @include mq("desktop") {
     gap: 48px 24px;
-    justify-content: flex-start; // Na desktopie zazwyczaj od lewej, ale możesz dać center
+    justify-content: flex-start;
   }
 }
 

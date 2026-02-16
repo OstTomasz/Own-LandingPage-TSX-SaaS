@@ -5,8 +5,6 @@
   // lepiej wygląda wyrównanie do lewej, jeśli tekst jest krótki
   align-items: center;
   text-align: center;
-  height: 100%;
-  width: 100%;
   max-width: 350px;
   margin: 0 auto;
   border-radius: 4px;
@@ -28,21 +26,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 112px; // Standard dla WebStudio (408px / 3.6 lub po prostu 112px)
   width: 100%;
   background-color: $backgroundalt-color;
   border-radius: 4px;
-  margin-bottom: 30px;
   color: $main-text-color; // Kolor ikony, jeśli w spricie ma currentColor
+  padding-block: 30px;
+}
+.icon {
+  width: 120px;
+  height: 120px;
+
+  @include mq("tablet") {
+    width: 92px;
+    height: 92px;
+  }
+
+  @include mq("desktop") {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 .featureTitle {
   font-weight: 700;
-  font-size: 1.25rem; // 36px na mobile dla mocnego uderzenia
-  line-height: 1.2;
+  font-size: 2.25rem;
+  line-height: 1.5;
   letter-spacing: 0.02em;
   color: $main-text-color;
-  margin-bottom: 8px;
+  margin-block: 10px;
+
+  @include mq("tablet") {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
 }
 
 .featureText {
@@ -50,5 +66,5 @@
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: $main-text-color; // Tekst musi być wyraźny
-  padding-inline: 10px;
+  padding: 10px 20px;
 }

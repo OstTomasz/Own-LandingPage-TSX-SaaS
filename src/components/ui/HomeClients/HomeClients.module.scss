@@ -37,7 +37,7 @@
 
   @include mq("desktop") {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap; // Pozwala ikonom przejść do nowej linii, jeśli zabraknie miejsca
     gap: 24px;
     max-width: 1200px; // Standardowa szerokość kontenera

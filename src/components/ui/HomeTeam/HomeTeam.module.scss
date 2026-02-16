@@ -26,14 +26,16 @@
   @include mq("tablet") {
     // Tablet: dwie kolumny po 350px
     grid-template-columns: repeat(2, 350px);
-    gap: 64px 24px;
+    gap: 64px 30px;
   }
 
   @include mq("desktop") {
     // Desktop: cztery kolumny po 264px
     grid-template-columns: repeat(4, 264px);
-    gap: 24px;
-    max-width: 1158px;
+    gap: 0;
+    justify-content: space-between;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0;
   }
 }

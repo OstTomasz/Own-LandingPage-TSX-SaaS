@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  // Klucz: wrapper musi mieć co najmniej 100% wysokości okna
   min-height: 100vh;
 }
 
@@ -11,25 +10,9 @@
   flex-grow: 1;
   width: 100%;
   background-color: $light-color;
-
-  // Opcjonalnie: jeśli chcesz, by animacja strony
-  // również wypełniała całą dostępną przestrzeń
-  position: relative;
 }
 
 .pageAnimation {
   width: 100%;
-  flex-grow: 1; // Pozwala Outletowi wypełnić Main, jeśli treści jest mało
-  animation: slideDown $transition-default forwards;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  flex-grow: 1;
 }

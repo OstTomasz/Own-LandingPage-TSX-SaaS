@@ -106,7 +106,7 @@ export const CLIENT_ICONS = [
   "client4",
   "client5",
   "client6",
-];
+] as const;
 
 // Portfolio 1
 import port1 from "../assets/images/portfolio1.jpg";

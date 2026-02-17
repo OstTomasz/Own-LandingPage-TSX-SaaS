@@ -20,7 +20,7 @@
 .pageAnimation {
   width: 100%;
   flex-grow: 1; // Pozwala Outletowi wypełnić Main, jeśli treści jest mało
-  animation: slideDown $transition-params forwards;
+  animation: slideDown $transition-default forwards;
 }
 
 @keyframes slideDown {

@@ -1,7 +1,7 @@
-import { HomeClients } from "@/components/ui/HomeClients/HomeClients";
-import { HomeHero } from "@/components/ui/HomeHero/HomeHero";
-import { HomeServices } from "@/components/ui/HomeServices/HomeServices";
-import { HomeTeam } from "@/components/ui/HomeTeam/HomeTeam";
+import { HomeClients } from "@/components/sections/HomeClients/HomeClients";
+import { HomeHero } from "@/components/sections/HomeHero/HomeHero";
+import { HomeServices } from "@/components/sections/HomeServices/HomeServices";
+import { HomeTeam } from "@/components/sections/HomeTeam/HomeTeam";
 
 export const HomePage = () => {
   return (

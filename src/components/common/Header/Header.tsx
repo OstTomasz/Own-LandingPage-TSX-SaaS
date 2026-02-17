@@ -3,8 +3,9 @@ import clsx from "clsx";
 import styles from "./Header.module.scss";
 
 import { Logo } from "@/components/ui/Logo/Logo";
-import { Navbar } from "@/components/ui/Navbar/Navbar";
-import { Contacts } from "@/components/ui/Contacts/Contacts";
+
+import { Contacts } from "@/components/sections/Contacts/Contacts";
+import { Navbar } from "@/components/common/Navbar/Navbar";
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);

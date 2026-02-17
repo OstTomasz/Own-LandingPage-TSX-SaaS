@@ -15,10 +15,10 @@
 
   // Twoja zmienna załatwia czas i easing
   transition:
-    transform $transition-params,
-    background-color $transition-params,
-    border-color $transition-params,
-    color $transition-params;
+    transform $transition-default,
+    background-color $transition-default,
+    border-color $transition-default,
+    color $transition-default;
 
   &:hover,
   &:focus {

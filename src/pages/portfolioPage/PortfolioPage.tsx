@@ -1,4 +1,4 @@
-import { PortfolioList } from "@/components/ui/PortfolioList/PortfolioList";
+import { PortfolioList } from "@/components/sections/PortfolioList/PortfolioList";
 
 export const PortfolioPage = () => {
   return <PortfolioList />;

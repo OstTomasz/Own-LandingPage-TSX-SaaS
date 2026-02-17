@@ -38,7 +38,7 @@
   object-fit: cover;
 
   // Płynność powrotu i powiększenia
-  transition: transform $transition-params;
+  transition: transform $transition-default;
 
   // Selektor wyzwalający zoom po najechaniu na CAŁĄ kartę
   .card:hover & {

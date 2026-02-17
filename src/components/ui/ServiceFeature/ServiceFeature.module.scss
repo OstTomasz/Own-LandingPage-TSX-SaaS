@@ -9,8 +9,8 @@
   margin: 0 auto;
   border-radius: 4px;
   transition:
-    transform $transition-params,
-    box-shadow $transition-params;
+    transform $transition-default,
+    box-shadow $transition-default;
 
   @include mq("tablet") {
     max-width: none; // Pozwólmy gridowi z HomeServices decydować o szerokości

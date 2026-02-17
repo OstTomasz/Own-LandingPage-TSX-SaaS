@@ -1,9 +1,8 @@
 import styles from "./ContactsPage.module.scss";
-
-import { ContactInfo } from "@/components/ui/ContactInfo/ContactInfo";
-import { ContactSocials } from "@/components/ui/ContactSocials/ContactSocials";
-import { OrderForm } from "@/components/ui/OrderForm/OrderForm";
+import { ContactInfo } from "@/components/sections/ContactInfo/ContactInfo";
 import { GoogleMap } from "@/components/ui/GoogleMaps/GoogleMap";
+import { ContactSocials } from "@/components/sections/ContactSocials/ContactSocials";
+import { OrderForm } from "@/components/sections/OrderForm/OrderForm";
 
 export const ContactsPage = () => {
   return (

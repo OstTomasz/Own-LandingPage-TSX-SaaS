@@ -1,0 +1,184 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.description {
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: $main-text-color;
+  margin-bottom: 8px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  label {
+    font-size: 0.75rem;
+    line-height: 1.17;
+    letter-spacing: 0.04em;
+    color: $alternative-borderline-color;
+  }
+}
+
+.inputWrapper {
+  position: relative;
+  padding-bottom: 15px;
+
+  input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid $alternative-borderline-color;
+    border-radius: 4px;
+    padding-left: 38px;
+    background-color: transparent;
+    outline: transparent;
+    transition: border-color $transition-default;
+
+    &:focus {
+      border-color: $highlight-color;
+      & + .icon {
+        color: $highlight-color;
+      }
+    }
+    &.inputError {
+      border-color: #ff0000;
+    }
+  }
+}
+
+.icon {
+  position: absolute;
+  left: 12px;
+  top: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  color: $main-text-color;
+  transition: color $transition-default;
+  pointer-events: none;
+}
+
+.textarea {
+  width: 100%;
+  height: 120px;
+  border: 1px solid $alternative-borderline-color;
+  border-radius: 4px;
+  background-color: transparent;
+  padding: 8px 16px;
+  resize: none;
+  outline: transparent;
+  transition: border-color $transition-default;
+
+  &:focus {
+    border-color: $highlight-color;
+  }
+  &::placeholder {
+    font-size: 0.7rem;
+  }
+}
+
+.hiddenCheckbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+
+  &:focus-visible + .checkboxLabel .customCheckbox {
+    outline: 2px solid $highlight-color;
+    outline-offset: 2px;
+  }
+}
+
+.checkboxField {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-bottom: 15px;
+
+  // Logika przełączania ikon oparta na stanie inputa
+  .checkmarkChecked {
+    display: none;
+  }
+  .checkmarkUnchecked {
+    position: absolute;
+    display: block;
+
+    top: -8px;
+    left: -4px;
+    width: 24px;
+    height: 24px;
+  }
+
+  &:has(.hiddenCheckbox:checked) {
+    .checkmarkChecked {
+      display: block;
+      color: $highlight-color;
+      animation: checkbox-pop 0.3s ease-out;
+    }
+    .checkmarkUnchecked {
+      display: none;
+    }
+  }
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: $alternative-borderline-color;
+
+  a {
+    color: $highlight-color;
+    text-decoration: underline;
+  }
+}
+
+.customCheckbox {
+  position: absolute;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  left: 0;
+  font-size: 0.625rem;
+  color: #ff0000;
+}
+
+.submitBtn {
+  margin: 24px auto 0;
+  min-width: 169px;
+}
+
+.policyInfo {
+  padding-left: 24px;
+}
+
+@keyframes checkbox-pop {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

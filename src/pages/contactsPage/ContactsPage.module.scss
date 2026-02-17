@@ -59,8 +59,8 @@
     0 20px 25px -5px rgba(0, 0, 0, 0.03);
 
   transition:
-    transform $transition-params,
-    box-shadow $transition-params;
+    transform $transition-default,
+    box-shadow $transition-default;
 
   // Delikatna interakcja, gdy użytkownik najeżdża na sekcję formularza
   &:hover {

@@ -1,14 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-
-import "./App.scss";
-
-import { HomePage } from "./pages/homePage/HomePage";
-import { ContactsPage } from "./pages/contactsPage/ContactsPage";
-import { PortfolioPage } from "./pages/portfolioPage/PortfolioPage";
+import { HomePage } from "./pages/HomePage/HomePage";
+import { ContactsPage } from "./pages/ContactsPage/ContactsPage";
+import { PortfolioPage } from "./pages/PortfolioPage/PortfolioPage";
 import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 
-import { MainLayout } from "./Layouts/MainLayout/MainLayout";
+import { MainLayout } from "./layouts/MainLayout/MainLayout";
 
 export const App = () => {
   return (

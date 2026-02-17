@@ -8,10 +8,10 @@
   // Optymalizacja pod animację koloru
   will-change: background-color, color, transform;
   transition:
-    background-color $transition-params,
-    border-color $transition-params,
-    color $transition-params,
-    transform $transition-params;
+    background-color $transition-default,
+    border-color $transition-default,
+    color $transition-default,
+    transform $transition-default;
 
   svg {
     fill: currentColor; // Dzięki temu ikona zawsze bierze kolor z tekstu linku

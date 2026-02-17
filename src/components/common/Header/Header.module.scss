@@ -10,10 +10,10 @@
   // Optymalizacja pod animację scrolla
   will-change: padding, background-color, box-shadow;
   transition:
-    padding $transition-params,
-    background-color $transition-params,
-    border-color $transition-params,
-    box-shadow $transition-params;
+    padding $transition-default,
+    background-color $transition-default,
+    border-color $transition-default,
+    box-shadow $transition-default;
 
   &.isScrolled {
     padding: 8px 0;

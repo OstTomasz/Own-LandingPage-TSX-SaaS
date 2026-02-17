@@ -25,7 +25,7 @@ export const SubscribeForm = () => {
   });
 
   // Ta funkcja wywoła się tylko jeśli walidacja przejdzie
-  const onValid = async (data: SubscribeFormData) => {
+  const onValid = async (data: SubscribeFormData): Promise<void> => {
     const action = async () => {
       console.log("Data:", data);
       await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -40,7 +40,7 @@ export const SubscribeForm = () => {
   };
 
   // Ta funkcja wywoła się jeśli walidacja NIE przejdzie
-  const onInvalid = () => {
+  const onInvalid = (): void => {
     if (errors.email) {
       toast.error("Please enter a valid email address");
     }
@@ -49,7 +49,9 @@ export const SubscribeForm = () => {
   return (
     <form
       className={styles.form}
-      onSubmit={handleSubmit(onValid, onInvalid)} // handleSubmit przyjmuje dwa callbacki
+      onSubmit={(e) => {
+        void handleSubmit(onValid, onInvalid)(e);
+      }} // handleSubmit przyjmuje dwa callbacki
       noValidate
     >
       <label className={styles.label}>

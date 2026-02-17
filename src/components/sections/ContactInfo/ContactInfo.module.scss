@@ -1,0 +1,136 @@
+.infoWrapper {
+  margin-bottom: 24px;
+  text-align: center;
+
+  .title {
+    @include fluid-type(1.5rem, 2.25rem);
+    line-height: 1.1;
+    color: $main-text-color;
+    margin-bottom: 32px;
+    font-weight: 700;
+  }
+
+  @include mq("desktop") {
+    text-align: left;
+  }
+}
+
+.details {
+  display: grid;
+  // MOBILE: Powrót do Twojego 2x2
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 16px;
+  justify-items: center;
+  width: 100%;
+
+  @include mq("tablet") {
+    // TABLET: Przejście na listę pionową (jeden pod drugim)
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  @include mq("desktop") {
+    // DESKTOP: Lista pionowa wyrównana do lewej
+    align-items: flex-start;
+    gap: 32px;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  transition: transform $transition-default;
+
+  @include mq("desktop") {
+    flex-direction: row; // Ikona i label obok wartości
+    align-items: center;
+    gap: 24px;
+
+    &:hover {
+      transform: translateX(8px);
+    }
+  }
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  svg {
+    fill: $alternative-borderline-color;
+    flex-shrink: 0;
+    transition:
+      fill $transition-default,
+      transform $transition-default;
+  }
+
+  .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: $alternative-color;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.05em;
+    transition:
+      color $transition-default,
+      transform $transition-default;
+  }
+
+  @include mq("desktop") {
+    min-width: 120px;
+    justify-content: flex-start;
+  }
+}
+
+.textContent {
+  @include flex-center(column);
+  width: 100%;
+
+  p,
+  a {
+    font-size: 1.125rem;
+    color: $main-text-color;
+    font-weight: 500;
+    text-align: center;
+    transition: color $transition-default;
+    margin: 0;
+    word-break: break-word; // Bezpiecznik dla bardzo małych ekranów
+  }
+
+  a {
+    @include animated-underline();
+  }
+
+  @include mq("desktop") {
+    align-items: flex-start;
+    p,
+    a {
+      font-size: 1.25rem;
+      text-align: left;
+    }
+  }
+}
+
+// Hover Effect
+.item:hover {
+  .headerRow {
+    svg {
+      fill: $highlight-color;
+      transform: scale(1.1);
+    }
+    .label {
+      color: $highlight-color;
+      transform: translateY(-2px);
+    }
+  }
+  .textContent p,
+  .textContent a {
+    color: $highlight-color;
+  }
+}

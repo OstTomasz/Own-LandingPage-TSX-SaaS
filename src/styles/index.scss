@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 :root {
   font-family: "Raleway", "Roboto", sans-serif;
 
@@ -9,6 +11,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  //synchronize manually in mixins, brakpoints.ts and index.scss
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1440px;
 }
@@ -17,6 +20,8 @@ html {
   margin: 0;
   padding: 0;
   scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: $highlight-color $backgroundalt-color;
 }
 a {
   text-decoration: none;
@@ -64,8 +69,8 @@ p {
   }
 }
 
-// Dla Firefox
-* {
-  scrollbar-width: thin;
-  scrollbar-color: $highlight-color $backgroundalt-color;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }

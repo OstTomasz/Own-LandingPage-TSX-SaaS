@@ -12,4 +12,8 @@ $alternative-borderline-color: #afb1b8;
 $icon-on-dark-color: #ffffff1a;
 $overlay-color: #2f303acc;
 $overlay-highlight: #4d5ae5;
-$transition-params: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+$font-primary: "Raleway", sans-serif;
+$font-secondary: "Roboto", sans-serif;
+
+$transition-default: 250ms cubic-bezier(0.4, 0, 0.2, 1);

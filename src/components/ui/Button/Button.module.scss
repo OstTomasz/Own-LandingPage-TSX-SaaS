@@ -13,7 +13,7 @@
   text-decoration: none;
 
   will-change: transform, background-color;
-  transition: all $transition-params;
+  transition: all $transition-default;
 
   &[data-variant="primary"] {
     background-color: $highlight-color;

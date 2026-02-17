@@ -62,7 +62,7 @@
   padding: 0 1rem;
   color: $light-color;
   outline: none;
-  transition: border-color $transition-params;
+  transition: border-color $transition-default;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.6);

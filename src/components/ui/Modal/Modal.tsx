@@ -4,7 +4,7 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import { Fragment, ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import styles from "./Modal.module.scss";
 import { CloseButton } from "../CloseBtn/CloseBtn";
 

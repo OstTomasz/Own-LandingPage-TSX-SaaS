@@ -8,8 +8,8 @@
 
   // Wspieramy płynne przejście kolorów, gdy rodzic zmienia kolor
   transition:
-    fill $transition-params,
-    stroke $transition-params;
+    fill $transition-default,
+    stroke $transition-default;
 
   // Rezygnujemy z &:hover tutaj.
   // To SocialIcon.module.scss powinien zarządzać kolorem ikony!

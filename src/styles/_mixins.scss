@@ -6,7 +6,7 @@ $breakpoints: (
   "mobile": 480px,
   "tablet": 768px,
   "desktop": 1440px,
-) !default;
+) !default; //synchronize manually in mixins, brakpoints.ts and index.scss
 
 /// Mixin do obsługi Media Queries
 /// @param {String} $breakpoint
@@ -39,15 +39,28 @@ $breakpoints: (
   $min-breakpoint: 480px,
   $max-breakpoint: 1440px
 ) {
+  @if math.unit($min-size) != "rem" or math.unit($max-size) != "rem" {
+    @error "fluid-type expects rem values, got: #{$min-size} and #{$max-size}";
+  }
+
+  @if math.unit($min-breakpoint) != "px" or math.unit($max-breakpoint) != "px" {
+    @error "fluid-type expects px breakpoints, got: #{$min-breakpoint} and #{$max-breakpoint}";
+  }
+
+  $min-size-unitless: math.div($min-size, 1rem);
+  $max-size-unitless: math.div($max-size, 1rem);
+  $min-bp-unitless: math.div($min-breakpoint, 1px);
+  $max-bp-unitless: math.div($max-breakpoint, 1px);
+
   $slope: math.div(
-    ($max-size - $min-size),
-    ($max-breakpoint - $min-breakpoint)
+    ($max-size-unitless - $min-size-unitless),
+    ($max-bp-unitless - $min-bp-unitless)
   );
-  $y-axis-intersection: -$min-breakpoint * $slope + $min-size;
+  $y-intercept: -$min-bp-unitless * $slope + $min-size-unitless;
 
   font-size: clamp(
     #{$min-size},
-    #{$y-axis-intersection} + #{$slope * 100vw},
+    #{$y-intercept * 1rem} + #{$slope * 100vw},
     #{$max-size}
   );
 }
@@ -62,15 +75,6 @@ $breakpoints: (
 
 @mixin aspect-ratio($width, $height) {
   aspect-ratio: $width / $height;
-
-  @supports not (aspect-ratio: 1 / 1) {
-    position: relative;
-    &::before {
-      content: "";
-      display: block;
-      padding-top: ($height / $width) * 100%;
-    }
-  }
 }
 
 @mixin animated-underline() {
@@ -80,8 +84,8 @@ $breakpoints: (
   will-change: transform; //prevent "jump" at the end of transition
 
   transition:
-    color v.$transition-params 50ms,
-    transform v.$transition-params 50ms;
+    color v.$transition-default 50ms,
+    transform v.$transition-default 50ms;
 
   position: relative;
 
@@ -96,7 +100,7 @@ $breakpoints: (
 
     transform: scaleX(0);
     transform-origin: bottom right;
-    transition: transform v.$transition-params 50ms;
+    transition: transform v.$transition-default 50ms;
   }
 
   &:hover {

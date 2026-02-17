@@ -16,41 +16,30 @@ import { Button } from "@/components/ui/Button/Button";
 export const HomeHero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleCloseModal = () => setIsModalOpen(false);
-  const handleOpenModal = () => setIsModalOpen(true);
   return (
-    <section className={styles.hero}>
-      <div className={styles.innerWrapper}>
-        <picture className={styles.picture}>
-          <source
-            media="(min-width: 1440px)"
-            srcSet={`${desktop1x} 1x, ${desktop2x} 2x`}
-          />
-
-          <source
-            media="(min-width: 768px)"
-            srcSet={`${tablet1x} 1x, ${tablet2x} 2x`}
-          />
-
-          <img
-            src={mobile1x}
-            srcSet={`${mobile2x} 2x`}
-            alt="Office work environment"
-            className={styles.image}
-          />
-        </picture>
-
-        <div className={styles.overlay}>
-          <div className={styles.container}>
-            <h1 className={styles.title}>
-              Effective Solutions for Your Business
-            </h1>
-            <Button onClick={handleOpenModal}>Order Service</Button>
-          </div>
+    <section className={styles.hero} aria-label="Hero">
+      <div
+        className={styles.heroInner}
+        style={
+          {
+            "--bg-mobile": `url(${mobile1x})`,
+            "--bg-mobile-2x": `url(${mobile2x})`,
+            "--bg-tablet": `url(${tablet1x})`,
+            "--bg-tablet-2x": `url(${tablet2x})`,
+            "--bg-desktop": `url(${desktop1x})`,
+            "--bg-desktop-2x": `url(${desktop2x})`,
+          } as React.CSSProperties
+        }
+      >
+        <div className={styles.container}>
+          <h1 className={styles.title}>
+            Effective Solutions for Your Business
+          </h1>
+          <Button onClick={() => setIsModalOpen(true)}>Order Service</Button>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <OrderForm onSuccess={handleCloseModal} />
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <OrderForm onSuccess={() => setIsModalOpen(false)} />
       </Modal>
     </section>
   );

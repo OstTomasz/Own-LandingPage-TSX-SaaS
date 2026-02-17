@@ -1,62 +1,84 @@
 .hero {
   width: 100%;
-  background-color: #2e2f42;
-  display: flex;
-  justify-content: center;
-}
-
-.innerWrapper {
-  position: relative;
-  // KLUCZ: Szerokość obrazka to 1200px
-  width: 1200px;
-  max-width: 100%; // Zabezpieczenie na mniejsze ekrany
-  margin: 0 auto;
-
-  // Usuwamy sztywne height - teraz wysokość zależy od obrazka
+  background-color: $backgroundmain-color;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.picture {
+.heroInner {
   width: 100%;
-  display: block; // Obrazek definiuje wysokość .innerWrapper
-}
-
-.image {
-  width: 100%;
-  height: auto; // Zachowuje proporcje obrazka
-  display: block;
-}
-
-.overlay {
-  // Pasek na środku obrazka
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  background-color: rgba(46, 47, 66, 0.7);
-
-  // Grubość paska regulujesz paddingiem
+  max-width: 1200px;
+  background-image: var(--bg-mobile);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding-block: 48px;
 
-  @include mq("desktop") {
-    padding-block: 60px;
+  @include mq("tablet") {
+    padding-block: 112px;
+    background-image: var(--bg-tablet);
   }
 
-  display: flex;
-  align-items: center;
+  @include mq("desktop") {
+    padding-block: 0;
+    min-height: 450px; // 1200 * (600/1600)
+    background-image: var(--bg-desktop);
+  }
+
+  @media (min-resolution: 2dppx) {
+    background-image: var(--bg-mobile-2x);
+
+    @include mq("tablet") {
+      background-image: var(--bg-tablet-2x);
+    }
+
+    @include mq("desktop") {
+      background-image: var(--bg-desktop-2x);
+    }
+  }
 }
 
 .container {
-  @include flex-center(column);
   width: 100%;
-  padding: 0 16px;
-  text-align: center;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 32px;
+  text-align: center;
   color: $light-color;
+  background-color: rgba($backgroundmain-color, 0.7);
+
+  @include mq("tablet") {
+    // Overlay na pełną szerokość viewportu — wychodzimy poza heroInner
+    width: 100vw;
+    padding: 48px 16px;
+  }
 
   @include mq("desktop") {
     gap: 48px;
+    padding: 60px 16px;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.07;
+  letter-spacing: 0.02em;
+  color: $light-color;
+  max-width: 496px;
+
+  @include mq("tablet") {
+    font-size: 2.5rem;
+  }
+
+  @include mq("desktop") {
+    font-size: 3.5rem;
+    max-width: 1200px;
   }
 }

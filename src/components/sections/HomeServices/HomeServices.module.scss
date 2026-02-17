@@ -1,23 +1,25 @@
-// Zmienne i mixiny zakładam, że masz zaimportowane w pliku głównym
-// $transition-default, $light-color, $main-text-color, $highlight-color itp.
-
 .section {
   @include flex-center(column);
   background-color: $light-color;
-  padding: 50px 15px; // Dodany padding boczny, żeby na mobile treść nie dotykała krawędzi
+  padding: 50px 15px;
   width: 100%;
 }
 
 .hidden {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip-path: inset(100%);
+  overflow: hidden;
 }
+
 .featureList {
   display: grid;
   gap: 24px;
   grid-template-columns: 1fr;
 
   margin: 0 auto 50px;
-  list-style: none;
 
   @include mq("tablet") {
     grid-template-columns: repeat(2, 1fr);
@@ -36,8 +38,6 @@
   max-width: 1200px;
   margin: 0 auto;
 
-  // Zamiast display: none, sterujemy widocznością kontenera usług
-  // Jeśli chcesz, żeby na mobile w ogóle nie było sekcji "Our Services":
   display: none;
   @include mq("desktop") {
     display: block;
@@ -45,7 +45,7 @@
 }
 
 .title {
-  font-size: 2.25rem; // 36px
+  font-size: $font-size-section-title;
   line-height: 1.11;
   text-align: center;
   letter-spacing: 0.02em;
@@ -59,12 +59,9 @@
   flex-wrap: wrap;
   gap: 24px;
   justify-content: space-between;
-  list-style: none;
-  padding: 0;
 }
 
 .serviceItem {
-  // Flex-basis pozwala na lepsze dopasowanie niż sztywne width
   flex-basis: 100%;
   max-width: 360px;
   height: 300px;
@@ -84,53 +81,43 @@
   height: 300px;
   overflow: hidden;
   border-radius: 4px;
-  cursor: pointer;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform $transition-default;
-  }
-
-  &:hover img,
-  &:focus-within img {
+  &:hover .serviceImage {
     transform: scale(1.1);
   }
 }
 
+.serviceImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform $transition-default;
+}
+
 .overlay {
   position: absolute;
-  bottom: 0; // Przyklejamy do dołu
+  bottom: 0;
   left: 0;
   width: 100%;
-
-  // Wysokość 1/4 obrazka (300px / 4 = 75px)
   height: 75px;
   background-color: rgba($overlay-color, 0.85);
-
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 20px;
-
-  // Przejście dla wysokości
   transition:
     height $transition-default,
     background-color $transition-default;
 
-  // Efekt po najechaniu: pasek lekko rośnie w górę
-  .imageWrapper:hover &,
-  .imageWrapper:focus-within & {
-    height: 90px; // Lekkie zwiększenie (np. do ~30% wysokości)
+  .imageWrapper:hover & {
+    height: 90px;
     background-color: rgba($overlay-color, 0.95);
   }
 }
 
 .overlayText {
   color: $light-color;
-  font-size: 1rem;
   line-height: 1.2;
   font-weight: 500;
   letter-spacing: 0.02em;

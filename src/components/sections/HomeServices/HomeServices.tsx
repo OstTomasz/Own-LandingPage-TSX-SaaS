@@ -5,7 +5,7 @@ import { ServiceFeature } from "@/components/ui/ServiceFeature/ServiceFeature";
 
 export const HomeServices = () => {
   return (
-    <section className={styles.section} aria-labelledby="services-title">
+    <section className={styles.section} aria-labelledby="features-title">
       <h2 id="features-title" className={styles.hidden}>
         Our Features
       </h2>
@@ -28,16 +28,15 @@ export const HomeServices = () => {
         <ul className={styles.serviceList} aria-labelledby="services-title">
           {SERVICES.map((service) => (
             <li key={service.id} className={styles.serviceItem}>
-              {/* tabIndex pozwala na focus klawiaturą, co wywoła hover w CSS (:focus-within) */}
-              <div className={styles.imageWrapper} tabIndex={0}>
+              <div className={styles.imageWrapper}>
                 <img
-                  src={service.img} // Fallback
-                  srcSet={`${service.img} 1x, ${service.img2x} 2x`} // Prawidłowe ładowanie x2 na Retinę
+                  src={service.img}
+                  srcSet={`${service.img} 1x, ${service.img2x} 2x`}
                   alt={service.title}
                   loading="lazy"
                   width="360"
                   height="300"
-                  className={styles.serviceImage} // Dodaj klasę dla pewności
+                  className={styles.serviceImage}
                 />
                 <div className={styles.overlay}>
                   <p className={styles.overlayText}>{service.title}</p>

@@ -1,56 +1,59 @@
 .button {
   @include flex-center();
-  gap: 0.625rem;
+  gap: 10px;
   font-family: inherit;
   font-weight: 700;
   font-size: 1rem;
   line-height: 1.18;
   letter-spacing: 0.04em;
-  padding: 0.625rem 1.5rem;
+  padding: 10px 24px;
   border-radius: 4px;
   border: none;
   cursor: pointer;
   text-decoration: none;
-
-  will-change: transform, background-color;
-  transition: all $transition-default;
-
-  &[data-variant="primary"] {
-    background-color: $highlight-color;
-    color: $light-color;
-
-    &:not(:disabled):hover {
-      background-color: $overlay-highlight;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    }
-  }
-
-  &[data-variant="secondary"] {
-    background-color: $background-light-color;
-    color: $highlight-color;
-
-    &:not(:disabled):hover {
-      background-color: $highlight-color;
-      color: $light-color;
-    }
-  }
-
-  &:active:not(:disabled) {
-    transform: scale(0.98);
-  }
-
-  &:disabled {
-    background-color: $alternative-borderline-color;
-    color: rgba($light-color, 0.5);
-    cursor: not-allowed;
-
-    svg {
-      opacity: 0.5;
-    }
-  }
+  will-change: transform;
+  transition:
+    background-color $transition-default,
+    color $transition-default,
+    box-shadow $transition-default,
+    transform $transition-default;
 
   svg {
     flex-shrink: 0;
     fill: currentColor;
+  }
+
+  &:active:not(.disabled) {
+    transform: scale(0.98);
+  }
+}
+
+.primary {
+  background-color: $highlight-color;
+  color: $light-color;
+
+  &:not(.disabled):hover {
+    background-color: $overlay-highlight;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.secondary {
+  background-color: $background-light-color;
+  color: $highlight-color;
+
+  &:not(.disabled):hover {
+    background-color: $highlight-color;
+    color: $light-color;
+  }
+}
+
+.disabled {
+  background-color: $alternative-borderline-color;
+  color: rgba($light-color, 0.5);
+  cursor: not-allowed;
+
+  svg {
+    opacity: 0.5;
   }
 }

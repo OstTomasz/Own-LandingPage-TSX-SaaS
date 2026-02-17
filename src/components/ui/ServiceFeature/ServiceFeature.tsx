@@ -14,9 +14,8 @@ export const ServiceFeature = ({
 }: ServiceFeatureProps) => {
   return (
     <article className={styles.featureCard}>
-      {/* aria-hidden, bo ikona jest czysto dekoracyjna */}
       <div className={styles.iconWrapper} aria-hidden="true">
-        <Icon name={iconName} className={styles.icon} />
+        <Icon name={iconName} size={80} />
       </div>
       <h3 className={styles.featureTitle}>{title}</h3>
       <p className={styles.featureText}>{description}</p>

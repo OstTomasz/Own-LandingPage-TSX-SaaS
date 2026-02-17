@@ -17,12 +17,10 @@ const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const isDesktop = useMediaQuery(QUERIES.tablet);
 
-  if (isDesktop && isMenuOpen) {
-    setIsMenuOpen(false);
-  }
+  // isMenuOpen ma sens tylko na mobile — na desktopie zawsze false
+  const menuOpen = !isDesktop && isMenuOpen;
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
@@ -43,17 +41,15 @@ export const Navbar = () => {
           <button
             className={styles["burger-btn"]}
             onClick={toggleMenu}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMenuOpen}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
             type="button"
           >
-            <Icon name={isMenuOpen ? "close" : "menu"} />
+            <Icon name={menuOpen ? "close" : "menu"} />
           </button>
         )}
       </nav>
-      {!isDesktop && isMenuOpen && (
-        <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />
-      )}
+      <MobileMenu isOpen={menuOpen} onClose={closeMenu} />
     </div>
   );
 };

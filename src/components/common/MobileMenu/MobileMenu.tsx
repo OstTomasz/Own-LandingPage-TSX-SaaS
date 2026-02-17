@@ -11,6 +11,7 @@ import { NAV_LINKS } from "@/data/navlinks";
 import { CloseButton } from "@/components/ui/CloseBtn/CloseBtn";
 import { Contacts } from "@/components/sections/Contacts/Contacts";
 import { SocialList } from "@/components/ui/SocialList/SocialList";
+import { TRANSITION_DURATION } from "@/styles/breakpoints";
 
 interface MobileMenuProps {
   onClose: () => void;
@@ -21,25 +22,19 @@ const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
   clsx(styles.navlink, isActive && styles.activeLink);
 
 export const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
-  // 1. Blokujemy scroll gdy komponent jest zamontowany
   const [isAnimating, setIsAnimating] = useState(false);
   useBodyScrollLock(isOpen);
 
   useEffect(() => {
     if (isOpen) {
-      // Mały delay, aby przeglądarka zdążyła zarejestrować zmianę klas
       const frame = requestAnimationFrame(() => setIsAnimating(true));
       return () => cancelAnimationFrame(frame);
     }
   }, [isOpen]);
 
   const handleClose = () => {
-    setIsAnimating(false); // Najpierw odpalamy animację wyjścia w CSS
-
-    // Czekamy tyle, ile trwa transition w SCSS (np. 350ms)
-    setTimeout(() => {
-      onClose();
-    }, 350);
+    setIsAnimating(false);
+    setTimeout(onClose, TRANSITION_DURATION);
   };
 
   // 2. Jeśli nie chcemy portalu, gdy menu jest całkiem zamknięte:
@@ -55,7 +50,7 @@ export const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
       <div className={styles.backdrop} onClick={handleClose} />
 
       <div className={styles.overlayContent}>
-        <CloseButton onClick={handleClose} />
+        <CloseButton onClick={handleClose} className={styles.closeBtn} />
 
         <nav className={styles.mobileNav}>
           {NAV_LINKS.map(({ to, label }) => (
@@ -70,7 +65,8 @@ export const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
           ))}
         </nav>
         <div className={styles.menuFooter}>
-          <Contacts className={styles.mobileContacts} />
+          <Contacts className={styles.mobileContacts} direction="column" />
+
           <div className={styles.socialsWrapper}>
             <SocialList variant="dark" />
           </div>

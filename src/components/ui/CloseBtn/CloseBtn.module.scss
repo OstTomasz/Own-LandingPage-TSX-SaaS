@@ -1,7 +1,4 @@
 .closeBtn {
-  position: absolute;
-  top: 24px;
-  right: 24px;
   @include flex-center;
   width: 40px;
   height: 40px;
@@ -9,11 +6,7 @@
   border: 1px solid $alternative-borderline-color;
   background-color: $background-light-color;
   cursor: pointer;
-
-  // Kolor ikony na starcie
   color: $main-text-color;
-
-  // Twoja zmienna załatwia czas i easing
   transition:
     transform $transition-default,
     background-color $transition-default,
@@ -25,7 +18,7 @@
     outline: none;
     background-color: $highlight-color;
     border-color: transparent;
-    color: $light-color; // Ikona reaguje na kolor (nie na fill)
+    color: $light-color;
     transform: rotate(90deg);
   }
 

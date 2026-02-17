@@ -8,16 +8,12 @@ interface LogoProps {
 }
 
 export const Logo = ({ variant = "dark", className }: LogoProps) => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <div
-      className={clsx(styles.logo, className)}
-      data-variant={variant} // Renderuje się jako: data-variant="dark"
-    >
-      <NavLink to="/" onClick={scrollToTop}>
+    <div className={clsx(styles.logo, styles[variant], className)}>
+      <NavLink
+        to="/"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
         <span className={styles.web}>WEB</span>
         <span>STUDIO</span>
       </NavLink>

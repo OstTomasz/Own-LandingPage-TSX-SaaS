@@ -1,74 +1,19 @@
 @use "sass:color";
 
+.mapContainer {
+  position: relative;
+  width: 100%;
+}
+
 .mapWrapper {
   width: 100%;
-  height: 50vh; // Zajmuje połowę wysokości ekranu na mobilu
+  height: 50vh;
   position: relative;
   overflow: hidden;
 
   @include mq("tablet") {
-    height: 500px; // Stała wysokość na desktopie zgodnie z Twoim wcześniejszym kodem
+    height: 500px;
   }
-}
-
-.marker {
-  position: absolute;
-
-  z-index: 10;
-  transform: translate(-50%, -100%);
-  cursor: pointer;
-
-  .icon {
-    width: 32px;
-    height: 32px;
-    background-color: $highlight-color;
-    border-radius: 50% 50% 50% 0;
-    transform: rotate(-45deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: inherit;
-      border-radius: inherit;
-      animation: pulse 2s infinite;
-      z-index: -1;
-    }
-
-    &::after {
-      content: "";
-      width: 12px;
-      height: 12px;
-      background: $light-color;
-      border-radius: 50%;
-    }
-  }
-
-  .text {
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    background: white;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-}
-
-// ... Twoje istniejące style .mapWrapper i .marker ...
-
-.mapContainer {
-  position: relative;
-  width: 100%; // Kontener nadrzędny bierze całość, .mapWrapper weźmie 50%
-  display: flex;
-  justify-content: flex-end; // Jeśli mapa ma być po prawej stronie
 }
 
 .overlay {
@@ -76,60 +21,78 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px; // Delikatny gradient na górze
+  height: 60px;
   background: linear-gradient(to bottom, $light-color 0%, transparent 100%);
   z-index: 5;
-  pointer-events: none; // KLUCZOWE: pozwala klikać przez gradient
+  pointer-events: none;
 }
 
-.infoWindow {
+.marker {
   position: absolute;
-  // Pozycjonowanie względem punktu lat/lng
-  transform: translate(-50%, -140%);
-  width: 180px;
-  padding: 20px;
-  background: $light-color;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  z-index: 20;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  background-color: $highlight-color;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    animation: pulse 2s infinite;
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: $light-color;
+    border-radius: 50%;
+  }
+}
+
+.infoContent {
+  padding: 4px 8px;
   text-align: center;
+  min-width: 140px;
 
   h3 {
-    margin: 0 0 5px;
-    font-size: 16px;
+    margin: 0 0 4px;
+    font-size: 1rem;
     color: $dark-color;
   }
 
   p {
-    margin: 0 0 15px;
-    font-size: 13px;
-    color: #666;
+    margin: 0 0 12px;
+    font-size: 0.8rem;
+    color: $alternative-color;
   }
 
   a {
     display: block;
     padding: 8px 12px;
     background-color: $highlight-color;
-    color: white;
-    text-decoration: none;
+    color: $light-color;
     border-radius: 6px;
-    font-size: 12px;
-    transition: background 0.3s;
+    font-size: 0.75rem;
+    transition: background-color $transition-default;
 
     &:hover {
       background-color: color.adjust($highlight-color, $lightness: -10%);
     }
-  }
-
-  .closeBtn {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    border: none;
-    background: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #999;
   }
 }
 

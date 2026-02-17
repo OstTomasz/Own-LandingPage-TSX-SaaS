@@ -7,8 +7,6 @@
   border-bottom: 1px solid transparent;
   padding: 16px 0;
 
-  // Optymalizacja pod animację scrolla
-  will-change: padding, background-color, box-shadow;
   transition:
     padding $transition-default,
     background-color $transition-default,
@@ -22,15 +20,15 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     border-bottom-color: $alternative-borderline-color;
   }
+}
 
-  .container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
 
-  .headerInner {
-    @include flex-center(row);
-    justify-content: space-between;
-  }
+.headerInner {
+  @include flex-center(row);
+  justify-content: space-between;
 }

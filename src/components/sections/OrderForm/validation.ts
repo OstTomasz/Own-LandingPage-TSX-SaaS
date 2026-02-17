@@ -12,13 +12,9 @@ export const contactFormSchema = z.object({
     .min(7, "Phone number is too short")
     .regex(/^[0-9+ ]+$/, "Invalid phone number format"),
 
-  email: z.string().min(1, "Email is required").email("Invalid email address"),
+  email: z.email("Invalid email address"),
 
-  comment: z
-    .string()
-    .max(1000, "Comment is too long")
-    .optional()
-    .or(z.literal("")), // Pozwala na pusty string bez błędów walidacji
+  comment: z.string().max(1000).optional().or(z.literal("")),
 
   policy: z.boolean().refine((val) => val === true, {
     message: "You must accept the privacy policy",

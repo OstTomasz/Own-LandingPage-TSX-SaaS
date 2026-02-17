@@ -1,9 +1,9 @@
 .footer {
   background-color: $backgroundmain-color;
-  padding: 2.5rem 0; // 40px
+  padding: 40px 0;
 
   @include mq("desktop") {
-    padding: 2rem 0; // 100px
+    padding: 32px 0;
   }
 }
 
@@ -11,16 +11,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem; // Twoje 16px
+  gap: 32px;
   margin: 0 auto;
-  padding: 0 1rem; // Bezpieczny margines boczny dla mobile
+  padding: 0 16px;
 
   @include mq("tablet") {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: center;
-    gap: 2.5rem 7rem;
+    gap: 40px 112px;
   }
 
   @include mq("desktop") {
@@ -28,20 +28,18 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 0;
-
-    // Ograniczenie szerokości do 1200px (75rem)
-    max-width: 75rem;
-    padding: 0 15px; // Standardowe wyrównanie krawędzi
+    max-width: 1200px;
+    padding: 0 15px;
   }
 }
 
 .infoWrapper {
   @include flex-center(column);
   text-align: center;
-  gap: 1rem;
+  gap: 16px;
 
   @include mq("tablet") {
-    width: 16.5rem; // 264px
+    width: 264px;
     margin: 0;
   }
 }
@@ -49,10 +47,10 @@
 .text {
   color: $lightalpha-color;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
   letter-spacing: 0.02em;
   margin: 0;
-  padding-inline: 100px;
+  padding-inline: clamp(16px, 10vw, 80px);
 
   @include mq("tablet") {
     padding-inline: 0;
@@ -61,7 +59,7 @@
 
 .socialWrapper {
   @include flex-center(column);
-  gap: 1rem;
+  gap: 16px;
 
   @include mq("tablet") {
     align-items: flex-start;
@@ -73,14 +71,12 @@
 }
 
 .subtitle {
+  @include fluid-type(0.9rem, 1rem);
   color: $light-color;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.2;
   letter-spacing: 0.02em;
-
   margin: 0;
-
-  // Twój dodatek dla lepszego pasowania do logo
   align-self: center;
 }
 

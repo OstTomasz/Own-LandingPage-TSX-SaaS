@@ -22,9 +22,12 @@ export const Button = ({
   disabled = false,
 }: ButtonProps) => {
   const commonProps = {
-    className: clsx(styles.button, className),
-    "data-variant": variant,
-    "data-disabled": disabled,
+    className: clsx(
+      styles.button,
+      styles[variant],
+      disabled && styles.disabled,
+      className,
+    ),
     onClick: (e: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
       if (disabled) {
         e.preventDefault();

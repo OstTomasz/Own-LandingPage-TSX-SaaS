@@ -14,9 +14,8 @@ export const Icon = ({ name, className, size = 24 }: IconProps) => {
       width={size}
       height={size}
       aria-hidden="true"
-      focusable="false" // Zapobiega focusowaniu ikony w IE/Edge (lepsze A11y)
+      focusable="false"
     >
-      {/* Dynamiczne ścieżki do sprite'ów są super wydajne */}
       <use href={`/icons.svg#icon-${name}`} />
     </svg>
   );

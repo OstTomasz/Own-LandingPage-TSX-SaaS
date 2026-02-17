@@ -4,9 +4,7 @@
   height: 44px;
   border-radius: 50%;
   border: 1px solid transparent;
-
-  // Optymalizacja pod animację koloru
-  will-change: background-color, color, transform;
+  will-change: transform;
   transition:
     background-color $transition-default,
     border-color $transition-default,
@@ -14,38 +12,34 @@
     transform $transition-default;
 
   svg {
-    fill: currentColor; // Dzięki temu ikona zawsze bierze kolor z tekstu linku
+    fill: currentColor;
   }
 
   &:hover,
   &:focus {
-    transform: translateY(
-      -3px
-    ); // Subtelny efekt uniesienia - Senior Level Detail
+    transform: translateY(-3px);
   }
+}
 
-  // Wariant CIEMNY (np. do MobileMenu na jasne tło)
-  &[data-variant="dark"] {
-    background-color: $highlight-color;
-    color: $light-color;
+.dark {
+  background-color: $highlight-color;
+  color: $light-color;
 
-    &:hover,
-    &:focus {
-      background-color: $background-light-color;
-      border-color: $highlight-color;
-      color: $highlight-color;
-    }
+  &:hover,
+  &:focus {
+    background-color: $background-light-color;
+    border-color: $highlight-color;
+    color: $highlight-color;
   }
+}
 
-  // Wariant JASNY (np. do Footera na ciemne tło)
-  &[data-variant="light"] {
-    background-color: $icon-on-dark-color; // Twoja zmienna #ffffff1a
+.light {
+  background-color: $icon-on-dark-color;
+  color: $light-color;
+
+  &:hover,
+  &:focus {
+    background-color: $overlay-highlight;
     color: $light-color;
-
-    &:hover,
-    &:focus {
-      background-color: $overlay-highlight; // Żywszy kolor przy hoverze na ciemnym tle
-      color: $light-color;
-    }
   }
 }

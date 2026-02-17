@@ -1,25 +1,26 @@
 .contacts {
   display: flex;
   font-style: normal;
-  font-family: "Roboto", sans-serif;
+  font-family: $font-secondary;
+}
 
-  &[data-direction="auto"] {
-    display: none;
+.directionAuto {
+  display: none;
 
-    @include mq("tablet") {
-      @include flex-center(column);
-      gap: 10px;
-    }
-    @include mq("desktop") {
-      flex-direction: row;
-      gap: 40px;
-    }
+  @include mq("tablet") {
+    @include flex-center(column);
+    gap: 10px;
   }
 
-  &[data-direction="column"] {
-    flex-direction: column;
-    gap: 16px;
+  @include mq("desktop") {
+    flex-direction: row;
+    gap: 40px;
   }
+}
+
+.directionColumn {
+  flex-direction: column;
+  gap: 16px;
 }
 
 .link {
@@ -28,9 +29,4 @@
   color: $alternative-color;
   text-decoration: none;
   width: fit-content;
-  transition: color $transition-default;
-
-  &:hover {
-    color: $highlight-color;
-  }
 }

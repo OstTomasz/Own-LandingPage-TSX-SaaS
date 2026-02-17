@@ -1,12 +1,12 @@
+import { SubscribeForm } from "@/components/sections/SubscribeForm/SubscribeForm";
 import styles from "./Footer.module.scss";
 import { Logo } from "@/components/ui/Logo/Logo";
 import { SocialList } from "@/components/ui/SocialList/SocialList";
-import { SubscribeForm } from "@/components/ui/SubscribeForm/SubscribeForm";
 
 export const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <div className={`container ${styles.container}`}>
+      <div className={styles.container}>
         <div className={styles.infoWrapper}>
           <Logo />
           <p className={styles.text}>

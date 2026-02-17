@@ -3,10 +3,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import toast from "react-hot-toast";
 
-import { Button } from "../Button/Button";
-import { Icon } from "../Icon/Icon";
 import styles from "./SubscribeForm.module.scss";
 import clsx from "clsx";
+import { Button } from "@/components/ui/Button/Button";
+import { Icon } from "@/components/ui/Icon/Icon";
 
 const subscribeSchema = z.object({
   email: z.email("Invalid email address"),
@@ -22,9 +22,9 @@ export const SubscribeForm = () => {
     formState: { isSubmitting, errors },
   } = useForm<SubscribeFormData>({
     resolver: zodResolver(subscribeSchema),
+    mode: "onTouched",
   });
 
-  // Ta funkcja wywoła się tylko jeśli walidacja przejdzie
   const onValid = async (data: SubscribeFormData): Promise<void> => {
     const action = async () => {
       console.log("Data:", data);
@@ -39,19 +39,12 @@ export const SubscribeForm = () => {
     });
   };
 
-  // Ta funkcja wywoła się jeśli walidacja NIE przejdzie
-  const onInvalid = (): void => {
-    if (errors.email) {
-      toast.error("Please enter a valid email address");
-    }
-  };
-
   return (
     <form
       className={styles.form}
       onSubmit={(e) => {
-        void handleSubmit(onValid, onInvalid)(e);
-      }} // handleSubmit przyjmuje dwa callbacki
+        void handleSubmit(onValid)(e);
+      }}
       noValidate
     >
       <label className={styles.label}>

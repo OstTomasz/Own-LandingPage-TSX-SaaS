@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 import { contactFormSchema, type ContactFormData } from "./validation";
 
+import clsx from "clsx";
 import styles from "./OrderForm.module.scss";
 import { Icon } from "@/components/ui/Icon/Icon";
 import { Button } from "@/components/ui/Button/Button";
@@ -27,13 +28,15 @@ const FormField = ({
   type = "text",
 }: FormFieldProps) => (
   <div className={styles.field}>
-    <label htmlFor={registration.name}>{label}</label>
+    <label htmlFor={registration.name} className={styles.fieldLabel}>
+      {label}
+    </label>
     <div className={styles.inputWrapper}>
       <input
         {...registration}
         id={registration.name}
         type={type}
-        className={error ? styles.inputError : ""}
+        className={clsx(styles.input, error && styles.inputError)}
       />
       {icon && (
         <div className={styles.icon}>
@@ -44,7 +47,6 @@ const FormField = ({
     </div>
   </div>
 );
-
 export const OrderForm = ({ onSuccess }: { onSuccess: () => void }) => {
   const {
     register,
@@ -53,22 +55,23 @@ export const OrderForm = ({ onSuccess }: { onSuccess: () => void }) => {
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   const onSubmit = async (data: ContactFormData): Promise<void> => {
-    const sendData = async () => {
-      console.log("Data:", data);
-      await new Promise((res) => setTimeout(res, 1500));
-      reset();
-      onSuccess();
-    };
-
-    await toast.promise(sendData(), {
-      loading: "Sending...",
-      success: "Message sent!",
-      error: "Error occurred.",
-    });
+    await toast.promise(
+      (async () => {
+        console.log("Data:", data);
+        await new Promise((res) => setTimeout(res, 1500));
+        reset();
+      })(),
+      {
+        loading: "Sending...",
+        success: "Message sent!",
+        error: "Error occurred.",
+      },
+    );
+    onSuccess();
   };
 
   return (

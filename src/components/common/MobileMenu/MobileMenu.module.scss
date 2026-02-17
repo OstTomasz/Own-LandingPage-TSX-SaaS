@@ -78,21 +78,19 @@
 }
 
 .mobileContacts {
-  display: flex !important; // Nadpisujemy ewentualne ukrywanie z desktopu
   flex-direction: column;
   gap: 12px;
 
   // Stylowanie linków/tekstów wewnątrz Contacts (jeśli nie mają swoich styli)
-  :global(.contact-item) {
-    font-size: 1rem;
-    color: rgba($main-text-color, 0.8);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
 }
 
 .socialsWrapper {
   display: flex;
   justify-content: flex-start;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
 }

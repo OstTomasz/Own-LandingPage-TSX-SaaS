@@ -8,3 +8,5 @@ export const QUERIES = {
   tablet: `(min-width: ${BREAKPOINTS.tablet}px)`,
   desktop: `(min-width: ${BREAKPOINTS.desktop}px)`,
 };
+
+export const TRANSITION_DURATION = 250; // ms, synchronize z $transition-default

@@ -24,7 +24,7 @@ export const TeamMember = ({ name, role, img, img2x }: TeamMemberProps) => {
         <h3 className={styles.name}>{name}</h3>
         <p className={styles.role}>{role}</p>
         <div className={styles.socialWrapper}>
-          <SocialList />
+          <SocialList iconSize={20} />
         </div>
       </div>
     </li>

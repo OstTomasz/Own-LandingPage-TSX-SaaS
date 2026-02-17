@@ -1,21 +1,19 @@
 .logo {
-  @include animated-underline();
   @include fluid-type(1.5rem, 2rem);
-  font-family: "Raleway", sans-serif;
+  font-family: $font-primary;
   font-weight: 700;
 
   a {
-    text-decoration: none;
-    color: inherit; // Kluczowe: kolor dziedziczony z rodzica (.light / .dark)
+    @include animated-underline();
   }
+}
 
-  &[data-variant="dark"] {
-    color: $light-color;
-  }
+.dark {
+  color: $light-color;
+}
 
-  &[data-variant="light"] {
-    color: $main-text-color;
-  }
+.light {
+  color: $main-text-color;
 }
 
 .web {

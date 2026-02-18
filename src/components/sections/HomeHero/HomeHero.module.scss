@@ -10,22 +10,23 @@
   width: 100%;
   max-width: 1200px;
   background-image: var(--bg-mobile);
-  background-size: cover;
-  background-position: center;
+  background-size: contain;
+  background-position: top;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-block: 48px;
+  min-height: 250px;
 
   @include mq("tablet") {
-    padding-block: 112px;
     background-image: var(--bg-tablet);
+
+    min-height: 300px;
   }
 
   @include mq("desktop") {
-    padding-block: 0;
-    min-height: 450px; // 1200 * (600/1600)
+    background-position: center;
+    min-height: 450px;
     background-image: var(--bg-desktop);
   }
 
@@ -44,7 +45,7 @@
 
 .container {
   width: 100%;
-  padding: 32px 16px;
+  padding: 20px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,9 +55,8 @@
   background-color: rgba($backgroundmain-color, 0.7);
 
   @include mq("tablet") {
-    // Overlay na pełną szerokość viewportu — wychodzimy poza heroInner
     width: 100vw;
-    padding: 48px 16px;
+    padding: 30px 16px;
   }
 
   @include mq("desktop") {

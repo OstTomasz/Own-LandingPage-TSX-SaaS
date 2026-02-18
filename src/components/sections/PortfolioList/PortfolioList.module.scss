@@ -8,7 +8,6 @@
   width: 100%;
   max-width: 428px;
   margin: 0 auto;
-  // Margines bezpieczeństwa, aby karty nie dotykały krawędzi ekranu na mobile
   padding-inline: 15px;
 
   @include mq("tablet") {
@@ -19,9 +18,9 @@
     max-width: 1158px;
   }
 }
+
 .listWrapper {
   width: 100%;
-  // To zapobiega zapadaniu się sekcji podczas animacji "wait"
   min-height: 500px;
   display: flex;
   justify-content: center;
@@ -31,6 +30,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
   gap: 48px;
   list-style: none;
   padding: 0;
@@ -48,9 +48,8 @@
 }
 
 .listItem {
-  width: 100%;
+  width: 90%;
   display: flex;
-  // Wyłączamy domyślne zachowanie flex-shrink, żeby Framer nie zgniatał kart
   flex-shrink: 0;
   flex-grow: 0;
 

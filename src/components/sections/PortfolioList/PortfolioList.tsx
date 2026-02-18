@@ -24,7 +24,6 @@ export const PortfolioList = () => {
           onFilterChange={setActiveFilter}
         />
 
-        {/* Ten div pilnuje wysokości podczas znikania/pojawiania się kart */}
         <div className={styles.listWrapper}>
           <AnimatePresence mode="wait">
             <motion.ul

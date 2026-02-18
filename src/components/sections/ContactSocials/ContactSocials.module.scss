@@ -1,19 +1,19 @@
 .socialsWrapper {
   margin-top: 32px;
   @include flex-center(column);
+}
 
-  .label {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: $alternative-color;
-    margin-bottom: 16px;
-    text-transform: uppercase;
-  }
+.label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: $alternative-color;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
 
-  .links {
-    display: flex;
-    gap: 16px;
-  }
+.links {
+  display: flex;
+  gap: 16px;
 
   a {
     @include flex-center;
@@ -34,13 +34,6 @@
       color: $highlight-color;
       border-color: $highlight-color;
       transform: translateY(-3px);
-    }
-  }
-
-  @include mq("tablet") {
-    .socialsWrapper {
-      align-items: flex-start;
-      margin-top: 48px;
     }
   }
 }

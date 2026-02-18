@@ -2,6 +2,8 @@ export const CONTACT_DATA = {
   email: "ost.tomasz@gmail.com",
   phone: "+48 513 738 524",
   phoneRaw: "+48513738524",
+  address: "59-300 Lubin, Poland",
+  nip: "000-000-00-00",
 } as const;
 
 export const SOCIAL_DATA = [
@@ -309,3 +311,34 @@ export const PORTFOLIO_FILTERS = [
 ] as const;
 
 export type PortfolioCategory = (typeof PORTFOLIO_FILTERS)[number];
+
+export const CONTACT_DETAILS = [
+  {
+    icon: "phone",
+    label: "Phone",
+    value: CONTACT_DATA.phone,
+    link: `tel:${CONTACT_DATA.phoneRaw}`,
+  },
+  {
+    icon: "email",
+    label: "Email",
+    value: CONTACT_DATA.email,
+    link: `mailto:${CONTACT_DATA.email}`,
+  },
+  {
+    icon: "location",
+    label: "Address",
+    value: CONTACT_DATA.address,
+    link: null,
+  },
+  { icon: "briefcase", label: "NIP", value: CONTACT_DATA.nip, link: null },
+] as const;
+
+export const SOCIAL_LINKS = [
+  { name: "github", url: "https://github.com/OstTomasz" },
+  {
+    name: "linkedin",
+    url: "https://www.linkedin.com/in/tomasz-ostaszewski-7166071aa/",
+  },
+  { name: "instagram", url: "https://instagram.com" },
+] as const;

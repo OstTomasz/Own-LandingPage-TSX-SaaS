@@ -9,19 +9,16 @@ export const ContactsPage = () => {
     <section className={styles.contactsSection}>
       <div className={styles.container}>
         <div className={styles.mainGrid}>
-          {/* Kolumna Lewa: Informacje */}
           <div className={styles.infoSide}>
             <ContactInfo />
             <ContactSocials />
           </div>
 
-          {/* Kolumna Prawa: Formularz */}
           <div className={styles.formSide}>
             <OrderForm onSuccess={() => {}} />
           </div>
         </div>
 
-        {/* Pełna szerokość pod spodem: Mapa */}
         <div className={styles.mapSection}>
           <GoogleMap />
         </div>

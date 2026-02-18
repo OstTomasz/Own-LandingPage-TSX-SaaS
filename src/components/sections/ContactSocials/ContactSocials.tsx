@@ -1,14 +1,6 @@
 import { Icon } from "@/components/ui/Icon/Icon";
 import styles from "./ContactSocials.module.scss";
-
-const SOCIAL_LINKS = [
-  { name: "github", url: "https://github.com/OstTomasz" },
-  {
-    name: "linkedin",
-    url: "https://www.linkedin.com/in/tomasz-ostaszewski-7166071aa/",
-  },
-  { name: "instagram", url: "https://instagram.com" }, // Twoja propozycja
-];
+import { SOCIAL_LINKS } from "@/data/config";
 
 export const ContactSocials = () => (
   <div className={styles.socialsWrapper}>

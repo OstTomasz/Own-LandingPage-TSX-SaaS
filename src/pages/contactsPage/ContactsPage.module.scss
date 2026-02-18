@@ -13,7 +13,6 @@
   padding: 0 15px;
 }
 
-// TO JEST KLUCZ: Grid sterujący układem góry
 .mainGrid {
   display: grid;
   grid-template-columns: 1fr;
@@ -26,16 +25,14 @@
   }
 
   @include mq("desktop") {
-    // 45/55 to złoty podział dla formularzy z cieniem
     grid-template-columns: 1fr 1fr;
-    gap: 100px; // Solidny oddech między sekcjami
-    align-items: center; // Dane wycentrowane względem wysokości formularza
+    gap: 100px;
+    align-items: center;
     margin-bottom: 100px;
   }
 }
 
 .infoSide {
-  // Trzyma ContactInfo i ContactSocials razem po lewej
   display: flex;
   flex-direction: column;
 
@@ -52,17 +49,12 @@
   border-radius: 15px;
   border: 1px solid rgba($main-text-color, 0.05);
 
-  // Wielowarstwowy "fajny" cień
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 10px 15px -3px rgba(46, 47, 66, 0.1),
-    0 20px 25px -5px rgba(0, 0, 0, 0.03);
+  box-shadow: $shadow-card;
 
   transition:
     transform $transition-default,
     box-shadow $transition-default;
 
-  // Delikatna interakcja, gdy użytkownik najeżdża na sekcję formularza
   &:hover {
     transform: translateY(-2px);
     box-shadow:
@@ -84,11 +76,10 @@
   border-radius: 15px;
 
   @include mq("tablet") {
-    max-width: 1200px; // Niech nie rośnie w nieskończoność
+    max-width: 1200px;
     margin: 40px auto 0;
 
     overflow: hidden;
-    // Też możemy dać jej lżejszy cień, żeby pasowała do formularza
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
 }

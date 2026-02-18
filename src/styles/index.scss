@@ -2,34 +2,71 @@
 
 :root {
   font-family: "Raleway", "Roboto", sans-serif;
-
   color: $main-text-color;
   background-color: $backgroundalt-color;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  //synchronize manually in mixins, brakpoints.ts and index.scss
+  // Synchronize manually in mixins, breakpoints.ts and index.scss
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1440px;
 }
+
+html {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: $highlight-color $backgroundalt-color;
+
+  &.no-scrollbar-gutter {
+    scrollbar-gutter: auto; // usuwa rezerwowane miejsce
+  }
+}
+
 body,
 html {
   margin: 0;
   padding: 0;
-  scrollbar-gutter: stable;
-  scrollbar-width: thin;
-  scrollbar-color: $highlight-color $backgroundalt-color;
 }
+
+// Webkit scrollbar styling
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: $backgroundalt-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba($highlight-color, 0.6);
+  border-radius: 20px;
+  border: 3px solid $backgroundalt-color;
+
+  &:hover {
+    background-color: $highlight-color;
+  }
+}
+
+// Global resets
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 a {
   text-decoration: none;
   color: currentColor;
+
   &:active {
     color: currentColor;
   }
 }
+
 ul {
   list-style: none;
   padding: 0;
@@ -42,35 +79,4 @@ h3,
 h4,
 p {
   margin: 0;
-}
-
-// Dla przeglądarek opartych na Webkit
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-
-::-webkit-scrollbar-track {
-  // Tor powinien mieć ten sam kolor co tło Twojej strony/sekcji
-  background: $backgroundalt-color;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgba(
-    $highlight-color,
-    0.6
-  ); // Lekka przezroczystość na starcie
-  border-radius: 20px;
-  // Border MUSI mieć ten sam kolor co track, żeby stworzyć efekt "pływającej wyspy"
-  border: 3px solid $backgroundalt-color;
-
-  &:hover {
-    background-color: $highlight-color; // Pełny Iris przy interakcji
-  }
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
 }
